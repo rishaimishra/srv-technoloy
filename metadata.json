@@ -1,0 +1,6 @@
+{
+  "name": "SRV Technology",
+  "description": "Enterprise website and interactive portfolio for SRV Technology featuring services, case studies, project estimator, interactive quote request, testimonials, and contact portal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

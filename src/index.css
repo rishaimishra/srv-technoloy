@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@layer base {
+  body, button, input, optgroup, select, textarea {
+    font-family: 'Roboto', sans-serif !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: -0.01em;
+    color: #0F172A;
+  }
+}
+
+button, .font-mono {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.font-logo {
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.font-caps {
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.hero-gradient {
+  background: linear-gradient(180deg, rgba(239, 246, 255, 0.8) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.nav-blur {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.bento-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #FFFFFF;
+  border-color: #E2E8F0;
+}
+
+.bento-card:hover {
+  transform: translateY(-6px);
+  border-color: #2563EB;
+  box-shadow: 0 16px 32px -8px rgba(37, 99, 235, 0.12);
+}
+
+.stat-line {
+  background: linear-gradient(90deg, #2563eb 0%, #0284c7 50%, transparent 100%);
+}
+
+/* Custom scrollbar for clean light look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2563EB;
+}
