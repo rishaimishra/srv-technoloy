@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
-import { Cpu, Database, Smartphone, Cloud, Code, ShoppingBag, ShieldCheck, CheckCircle2, ArrowUpRight, Award, Zap, Layers } from 'lucide-react';
+import { Cpu, Database, Smartphone, Cloud, Code, ShoppingBag, ShieldCheck, Award, Layers } from 'lucide-react';
 import { Carousel } from './Carousel';
+
+import bhutanechosImg from '../assets/partners/bhutanechos.jpeg';
+import bizspiceImg from '../assets/partners/bizspice.jpeg';
+import deeplogicImg from '../assets/partners/deeplogic.jpeg';
+import fccImg from '../assets/partners/fcc.jpeg';
+import jobdaddyImg from '../assets/partners/jobdaddy.png';
+import revenueVaultImg from '../assets/partners/revenue-vault.png';
+import scanbhutanImg from '../assets/partners/scanbhutan.jpeg';
+import successResourcesImg from '../assets/partners/success-resources.jpeg';
+import wardcImg from '../assets/partners/wardc.jpeg';
 
 interface TechLogoItem {
   id: string;
@@ -16,104 +26,23 @@ interface TechLogoItem {
 interface ClientLogo {
   id: string;
   name: string;
-  industry: string;
-  location: string;
-  projectScope: string;
-  logoLetter: string;
-  image: string;
-  gradient: string;
-  badgeText: string;
-  stats: string;
+  description: string;
+  logoSrc: string;
 }
 
 export const TechAndClientsSection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
   const clients: ClientLogo[] = [
-    {
-      id: 'omni',
-      name: 'OmniLogistics Global',
-      industry: 'Supply Chain & Freight Logistics',
-      location: 'USA & Singapore',
-      projectScope: 'Syspro ERP & Field Tracking Mobile Platform',
-      logoLetter: 'OLG',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80',
-      gradient: 'from-blue-600 to-indigo-700',
-      badgeText: 'Syspro ERP + Mobile',
-      stats: '45% Freight Routing Speedup',
-    },
-    {
-      id: 'apex',
-      name: 'Apex Industrial Mfg',
-      industry: 'Heavy Machinery & Automotive',
-      location: 'Germany & India',
-      projectScope: 'Automated Factory ERP Sync & Quality Inspection',
-      logoLetter: 'AIM',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80',
-      gradient: 'from-sky-600 to-blue-700',
-      badgeText: 'Syspro + Flutter',
-      stats: '99.8% Factory Floor Uptime',
-    },
-    {
-      id: 'novus',
-      name: 'Novus HealthCare Systems',
-      industry: 'Telehealth & Medical Diagnostics',
-      location: 'United Kingdom',
-      projectScope: 'Patient Portal & React Native Diagnostics',
-      logoLetter: 'NHS',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80',
-      gradient: 'from-teal-600 to-emerald-700',
-      badgeText: 'React Native + Web',
-      stats: '250,000+ Active Patients',
-    },
-    {
-      id: 'finedge',
-      name: 'FinEdge Global Capital',
-      industry: 'Investment Banking & FinTech',
-      location: 'Dubai & UK',
-      projectScope: 'Salesforce Financial Cloud & Custom LWC',
-      logoLetter: 'FGC',
-      image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=600&q=80',
-      gradient: 'from-blue-700 to-cyan-700',
-      badgeText: 'Salesforce LWC Apex',
-      stats: '$1.8B Assets Processed',
-    },
-    {
-      id: 'aura',
-      name: 'Aura Retail Group',
-      industry: 'Omnichannel Apparel & E-Commerce',
-      location: 'Australia & USA',
-      projectScope: 'Shopify Plus Headless & ERP Inventory',
-      logoLetter: 'ARG',
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80',
-      gradient: 'from-purple-600 to-blue-600',
-      badgeText: 'Shopify Plus + ERP',
-      stats: '3.2x Mobile Conversions',
-    },
-    {
-      id: 'zenith',
-      name: 'Zenith Telecom Solutions',
-      industry: 'Telecommunications & Broadband',
-      location: 'India & SEA',
-      projectScope: 'AI Customer Assistant & Custom CRM Engine',
-      logoLetter: 'ZTS',
-      image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80',
-      gradient: 'from-cyan-600 to-blue-800',
-      badgeText: 'AI/ML + Cloud API',
-      stats: '80% Support Resolution',
-    },
-    {
-      id: 'strata',
-      name: 'Strata Energy Infrastructure',
-      industry: 'Renewables & Grid Utilities',
-      location: 'Canada',
-      projectScope: 'Flutter Offline Field Order & GIS Mapping',
-      logoLetter: 'SEI',
-      image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=600&q=80',
-      gradient: 'from-emerald-600 to-teal-800',
-      badgeText: 'Flutter + GIS',
-      stats: '1,200 Field Engineers',
-    },
+    { id: 'jobdaddy', name: 'JobDaddy', description: 'AI-Powered Recruitment Platform', logoSrc: jobdaddyImg },
+    { id: 'revenue-vault', name: 'Revenue Vault', description: 'Revenue Intelligence & Analytics', logoSrc: revenueVaultImg },
+    { id: 'deeplogic', name: 'DeepLogic', description: 'Deep Technology Solutions', logoSrc: deeplogicImg },
+    { id: 'bizspice', name: 'BizSpice', description: 'Business Growth & Consulting', logoSrc: bizspiceImg },
+    { id: 'scanbhutan', name: 'ScanBhutan', description: 'Digital Solutions for Bhutan', logoSrc: scanbhutanImg },
+    { id: 'bhutanechos', name: 'Bhutan Echoes', description: 'Media & Publishing', logoSrc: bhutanechosImg },
+    { id: 'success-resources', name: 'Success Resources', description: 'Training & Development', logoSrc: successResourcesImg },
+    { id: 'fcc', name: 'FCC', description: 'Financial & Corporate Consulting', logoSrc: fccImg },
+    { id: 'wardc', name: 'WARDC', description: 'Development & Consulting', logoSrc: wardcImg },
   ];
 
   const techLogos: TechLogoItem[] = [
@@ -227,7 +156,7 @@ export const TechAndClientsSection: React.FC = () => {
             id="clients-carousel"
             autoPlay={true}
             autoPlayInterval={4500}
-            itemsPerPage={{ mobile: 1, tablet: 2, desktop: 3 }}
+            itemsPerPage={{ mobile: 2, tablet: 3, desktop: 4 }}
             badge={
               <div className="inline-flex items-center gap-2 text-blue-700 font-caps text-xs tracking-widest font-bold px-3.5 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 uppercase">
                 <Award className="w-3.5 h-3.5" /> PROVEN GLOBAL TRACK RECORD
@@ -241,53 +170,20 @@ export const TechAndClientsSection: React.FC = () => {
             subtitle="Trusted by enterprise leaders worldwide across manufacturing, logistics, healthcare, FinTech, and e-commerce."
             items={clients}
             renderItem={(client) => (
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-500 transition-all duration-300 group flex flex-col justify-between overflow-hidden h-full">
-                {/* Visual Image Header */}
-                <div className="relative h-44 overflow-hidden bg-slate-100">
+              <div className="flex flex-col items-center justify-center h-full px-4 py-2 text-center">
+                <div className="w-24 h-24 rounded-xl bg-white flex items-center justify-center p-3 mb-3">
                   <img
-                    src={client.image}
-                    alt={client.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
+                    src={client.logoSrc}
+                    alt={`${client.name} logo`}
+                    className="w-full h-full object-contain"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
-                  
-                  {/* Floating Logo Badge */}
-                  <div className="absolute bottom-4 left-4 flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${client.gradient} text-white font-extrabold text-xs flex items-center justify-center shadow-md border border-white/20`}>
-                      {client.logoLetter}
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-white text-sm leading-tight">
-                        {client.name}
-                      </h3>
-                      <p className="text-[11px] text-blue-200 font-medium">
-                        {client.location}
-                      </p>
-                    </div>
-                  </div>
                 </div>
-
-                <div className="p-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <span className="inline-block text-[10px] font-bold font-caps tracking-wider uppercase px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 border border-slate-200 mb-3">
-                      {client.badgeText}
-                    </span>
-
-                    <p className="text-xs text-slate-600 mb-4 line-clamp-2 leading-relaxed">
-                      {client.projectScope}
-                    </p>
-                  </div>
-
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                    <span className="font-bold text-blue-700 text-[11px] flex items-center gap-1 font-caps">
-                      <Zap className="w-3.5 h-3.5 text-amber-500 fill-amber-500" /> {client.stats}
-                    </span>
-                    <span className="text-slate-400 group-hover:text-blue-600 transition-colors">
-                      <ArrowUpRight className="w-4 h-4" />
-                    </span>
-                  </div>
-                </div>
+                <h3 className="text-sm font-bold text-slate-900 mb-0.5">
+                  {client.name}
+                </h3>
+                <p className="text-[11px] text-slate-500">
+                  {client.description}
+                </p>
               </div>
             )}
           />
