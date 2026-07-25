@@ -147,9 +147,9 @@ export const Header: React.FC<HeaderProps> = ({
           </Link>
 
           <Link
-            to="/insights"
+            to="/blog"
             className={`font-caps text-xs tracking-widest py-2 transition-colors relative font-bold ${
-              isActive('/insights')
+              isActive('/blog')
                 ? 'text-blue-700 border-b-2 border-blue-600'
                 : 'text-slate-700 hover:text-blue-600'
             }`}

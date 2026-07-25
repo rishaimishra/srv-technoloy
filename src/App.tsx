@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
 import { SideDrawer } from './components/SideDrawer';
 import { Footer } from './components/Footer';
@@ -16,6 +16,8 @@ import { PortfolioPage } from './pages/PortfolioPage';
 import { AboutPage } from './pages/AboutPage';
 import { InsightsPage } from './pages/InsightsPage';
 import { ContactPage } from './pages/ContactPage';
+import { BlogListPage } from './pages/BlogListPage';
+import { BlogDetailPage } from './pages/BlogDetailPage';
 
 // Modals
 import { CaseStudyModal } from './components/CaseStudyModal';
@@ -54,7 +56,7 @@ export function App() {
   };
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <div className="min-h-screen bg-[#131313] text-[#e2e2e2] selection:bg-[#1163fb] selection:text-white relative flex flex-col justify-between">
         {/* Top App Header */}
@@ -164,6 +166,20 @@ export function App() {
                 <ContactPage />
               }
             />
+
+            <Route
+              path="/blog"
+              element={
+                <BlogListPage />
+              }
+            />
+
+            <Route
+              path="/blog/:slug"
+              element={
+                <BlogDetailPage />
+              }
+            />
           </Routes>
         </main>
 
@@ -203,7 +219,7 @@ export function App() {
           prefilledNotes={quotePrefill}
         />
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

@@ -1,13 +1,13 @@
 import { ServiceItem, CaseStudy, Testimonial, JournalArticle } from '../types';
 
 export const HOTLINK_IMAGES = {
-  heroBg: 'https://lh3.googleusercontent.com/aida/AP1WRLtBkrbbjQjT8T15VCDbzzDmW86ymeu-wNaoVsHd3OF7KsRku2I8Nj6cytGT5G7R5qh3cKkbT6L2cyVRapqLrAU-C3lOnT1Vl5Q5m5LhIal_MWlLfRd93dVTnSCLh9sl21y34_nGeqkn6v6Ytstj1TPUWpJ5oKWMaZ7NhJS1Mf29PzRdz3GT3pXvMH5Y8qqoZUUsl3YNf4jHSLD1C8kKYILqqEybprons-VGhx39qMqzAKlXuTwRngXF',
-  lumenox: 'https://lh3.googleusercontent.com/aida/AP1WRLsHSmztsVy1EsIIR9j4x9CbAu56cKfcwsWC_VpqXZS_Pe3D5T1Ba9cShICSUG1VNak0G7RgGoV3dIZ-Wrhq-oGivJFY5yHipqKycbciXvaCOkRsZoIDmRzgELsm_bzC-SVEP5clOQMGgXED5CUFYYj66NgyEof74gD2TBXU2ODoVPwlYlKKx76GV4PRDVDQHG1u_Yyxk2tJctv9GIXYVmX64IL5ZvDSkCLjYQ0XkWMsdhuRYsXVZP3V2Q',
-  collarHire: 'https://lh3.googleusercontent.com/aida/AP1WRLuR7RYSsY2Ej1vQ0Ke9hjZUztDGJu7SPBHeuozu5KkqNAJIL9OwibAGwCW9U8sBXoe73cpEsE1umsmUp1W1OUNORKC1Qdx7WZYYb0XhEUdyTBselKOUjZAztOE7ZH-OUE45_SvAknuW7kgRZCdiLwHb5qSufD63C2WUV3dld973OK0xueMvhPbk0sMx9FjrjEPIdX3_5ZwVnGoLGpKY19lP8A6D972YIsX_WvvyOi0H7xx-cNaW4_Ozgw',
-  theCaryCompany: 'https://lh3.googleusercontent.com/aida/AP1WRLtRKQJZPmNycM8Ypr3eoHsrINqJ65VQujgeOH6Zvx9IGsQa2k1adfnHzhKipHbyp-QZi3tqYdAJUR__j_bp5dNk4fhJSiaQq6-Z4bHP5HzllsO0G47XvprYbiXCWi2TtqsaYnthk7UDa5102mgZsb9EzvxlvVnNjIuGObMJCrMoNXQPPXg6WGMfIOlSvWvqvJtc2aeFWYO3Vieq1xDGc8QPTxtVG_vCUP0OMMGBxp3b6OJieBg7zWRzsw',
-  articleSeo: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA5WshS7FEGEe8e9v63GwJMYs-VN7WwvF9ipVb_do7uv3TAoKkSEGPSO7tvcaspQF6CcOETNJFQMbKOm1mhV7sxv6miHLihpXdS75Tc2ZBUtfKwpTbMCMn5SS6SdMR8MgjVyyVaWeoBMT67oYdgWpQyLzm1zzPxLA4vXPxc-vpS2qbbgzbANhtbDtXpaDyfQkjpmq5WLYcjLDT9Tx9Ne9yk7_StCSy8j5kFWuuQm_4-NP7Ijt4NLnAKGSkHlfFyWHwA7mDyHA0MCQ',
-  articleAiMl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDGHsG1dJk4WaKv7J3DbOWZ09epwcQJwvDP1jfu9CKIArCwwTKGXHTxW1URehKfBX6u5n44W2oH0nG_3S4UIngMeb_DnbyY53FWS0nT8ek86QkdwoPLuhGvOJ2Eulw3xc_efQJ0S2JuRwt4107F5V4F2bn2LfMMpmyI4SbdUOQVwkUrYLfjrCky-eerofjRrs-Gt8Ni5uesJrBuxPQTHvpYtdNWdnI6t8FNfCN_IG4pU90GNku6790lBItr01QAHwiyKHBJN4UoDw',
-  articleEcommerce: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBULpWmA69cRplAHma-uwbAUuuqQf0MjeSSHKOn-2ds9fAJVQXI2sWEtWdA6itVoQZrdFRmp5v2O32uweRhhmRj-llFfFXrGuO9lNNLDDu1NTvYmbdBjIkLyjdrjbS68Y6oPD3tMJ1l52v-zCKxG7Y3pSWc0eYkKk4nCfwaAqBCrftev4ALOy6U9yB4hhro-gUgy9PbvlhvQTcPHUhPW3IseeygZXehzLR5JQ7wIS12xvZ9urC4ydz3W3Nqir1YFtBrcoW2Q05bbg',
+  heroBg: '',
+  Quetext: 'src/assets/clients/quetext.webp',
+  collarHire: 'src/assets/clients/collar_hire.webp',
+  theCaryCompany: 'src/assets/clients/the_cary_company.webp',
+  articleSeo: 'src/assets/articles/seo.webp',
+  articleAiMl: 'src/assets/articles/ai-ml.webp',
+  articleEcommerce: 'src/assets/articles/ecommerce.webp',
 };
 
 export const SERVICES_DATA: ServiceItem[] = [
@@ -175,11 +175,11 @@ export const SERVICES_DATA: ServiceItem[] = [
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    id: 'lumenox',
-    title: 'Lumenox',
+    id: 'Quetext',
+    title: 'Quetext',
     subtitle: 'High-Performance Enterprise Management Platform',
     category: 'REACT / LARAVEL',
-    image: HOTLINK_IMAGES.lumenox,
+    image: HOTLINK_IMAGES.Quetext,
     summary: 'A high-performance enterprise management platform built for scalability and real-time data processing.',
     client: 'Lumenox Corp (USA)',
     year: '2025',

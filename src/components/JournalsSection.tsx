@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { JOURNAL_ARTICLES } from '../data/content';
 import { JournalArticle } from '../types';
 
@@ -72,6 +73,16 @@ export const JournalsSection: React.FC<JournalsSectionProps> = ({ onSelectArticl
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="text-center mt-14">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-full font-bold text-xs tracking-wider uppercase transition-all shadow-md"
+          >
+            VIEW ALL ARTICLES
+            <span className="material-symbols-outlined text-sm">arrow_forward</span>
+          </Link>
         </div>
       </div>
     </section>
