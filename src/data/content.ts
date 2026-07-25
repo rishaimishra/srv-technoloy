@@ -1,10 +1,15 @@
 import { ServiceItem, CaseStudy, Testimonial, JournalArticle } from '../types';
 
 export const HOTLINK_IMAGES = {
-  heroBg: '',
   Quetext: 'src/assets/clients/quetext.webp',
-  collarHire: 'src/assets/clients/collar_hire.webp',
-  theCaryCompany: 'src/assets/clients/the_cary_company.webp',
+  collarHire: 'src/assets/clients/collar-hire.webp',
+  theCaryCompany: 'src/assets/clients/The-Carry-Company.webp',
+  jobdaddy: 'src/assets/clients/Jobdaddy.webp',
+  pedif: 'src/assets/clients/pedif.webp',
+  trackifyx: 'src/assets/clients/TrackifyX.webp',
+  almazra: 'src/assets/clients/almazra.webp',
+  halaladvisor: 'src/assets/clients/halaladvisor.webp',
+  koraBt: 'src/assets/clients/kora-bt.webp',
   articleSeo: 'src/assets/articles/seo.webp',
   articleAiMl: 'src/assets/articles/ai-ml.webp',
   articleEcommerce: 'src/assets/articles/ecommerce.webp',
@@ -233,6 +238,66 @@ export const CASE_STUDIES: CaseStudy[] = [
     challenge: 'Managing over 45,000 SKUs with variable tier pricing and real-time warehouse inventory was causing slow site performance and basket abandonments.',
     solution: 'SRV Technology built a headless Magento engine coupled with Elasticsearch for sub-second product filtering, alongside dynamic ERP integration for automated order processing.',
     techStack: ['Magento 2', 'PHP 8.2', 'Elasticsearch', 'Varnish Cache', 'Alpine.js', 'GraphQL']
+  },
+  {
+    id: 'jobdaddy',
+    title: 'JobDaddy',
+    subtitle: 'AI-Powered Applicant Matching Platform',
+    category: 'NEXT.JS / AI',
+    image: HOTLINK_IMAGES.jobdaddy,
+    summary: 'Wolf of the Job Street — JobDaddy combines advanced AI-powered applicant matching with deep recruitment expertise to bridge the gap between ambitious professionals and high-growth enterprises.',
+    client: 'JobDaddy Inc.',
+    year: '2025',
+    duration: '5 Months',
+    results: [
+      { metric: 'Top 1%', label: 'Talent Matching Accuracy' },
+      { metric: '3x', label: 'Faster Candidate Shortlisting' },
+      { metric: '10k+', label: 'Active Job Listings' }
+    ],
+    overview: 'JobDaddy is a modern recruitment platform that leverages AI to match top-tier candidates with enterprise positions. The platform combines vector-based resume matching with behavioral profiling for superior hiring outcomes.',
+    challenge: 'Recruiters struggled with time-intensive manual screening, low relevance matches, and an inability to scale hiring pipelines for high-growth enterprises.',
+    solution: 'SRV Technology built a full-stack Next.js platform with PostgreSQL for structured data and vector embeddings for semantic resume search. The AI pipeline analyzes candidate experience, skills, and cultural fit to generate ranked shortlists.',
+    techStack: ['Next.js', 'PostgreSQL', 'React', 'Node.js', 'Gemini AI API', 'Pinecone Vector DB']
+  },
+  {
+    id: 'pedif',
+    title: 'PEDIF',
+    subtitle: 'PDF-to-ERP Data Extraction Engine',
+    category: 'NEXT.JS / AI',
+    image: HOTLINK_IMAGES.pedif,
+    summary: 'PEDIF makes PDF documents usable for e-invoice, ERP and EDI workflows by recognizing recurring PDF layouts and extracting structured data.',
+    client: 'PEDIF Technologies',
+    year: '2025',
+    duration: '4 Months',
+    results: [
+      { metric: '99%', label: 'Data Extraction Accuracy' },
+      { metric: '85%', label: 'Reduction in Manual Data Entry' },
+      { metric: '50+', label: 'PDF Layouts Recognized' }
+    ],
+    overview: 'Many partners still send PDFs. PEDIF recognizes recurring PDF layouts, extracts relevant fields, validates generated target outputs, and hands structured data to e-invoice, ERP, EDI or email-based workflows.',
+    challenge: 'Businesses receiving thousands of PDF invoices and purchase orders had no automated way to extract line-item data, causing delays in ERP synchronization and order processing.',
+    solution: 'SRV Technology developed a Next.js platform with React frontend and Node.js backend that uses computer vision and layout analysis to identify PDF structures, extract fields, validate against target schemas, and push clean data to ERP/EDI systems.',
+    techStack: ['Next.js', 'React', 'Node.js', 'Python', 'Computer Vision', 'REST APIs']
+  },
+  {
+    id: 'trackifyx',
+    title: 'Trackify X',
+    subtitle: 'Ad Spend Attribution & Marketing Analytics',
+    category: 'VUE.JS / LARAVEL',
+    image: HOTLINK_IMAGES.trackifyx,
+    summary: 'Optimize your ad spend with clear attribution using Trackify X. Use accurate customer behavior data to inform marketing decisions and crack the code of better ROI.',
+    client: 'Trackify X Inc.',
+    year: '2025',
+    duration: '6 Months',
+    results: [
+      { metric: '40%', label: 'Improvement in ROAS' },
+      { metric: 'Real-Time', label: 'Attribution Dashboard' },
+      { metric: '100k+', label: 'Tracked Customer Journeys' }
+    ],
+    overview: 'Trackify X is a marketing attribution platform that provides accurate customer behavior data across channels, enabling businesses to optimize ad spend and maximize ROI.',
+    challenge: 'Marketing teams lacked visibility into which channels drove conversions, leading to inefficient budget allocation and inability to measure true campaign performance.',
+    solution: 'SRV Technology engineered a Vue.js frontend with Laravel backend and Node.js microservices that capture, process, and visualize multi-channel attribution data in real-time with interactive dashboards.',
+    techStack: ['Vue.js', 'Laravel', 'Node.js', 'PostgreSQL', 'Redis', 'Chart.js']
   }
 ];
 
