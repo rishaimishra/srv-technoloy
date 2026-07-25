@@ -11,7 +11,7 @@ export const ErpSalesforcePage: React.FC<ErpSalesforcePageProps> = ({
   return (
     <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Header Banner */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto mb-20">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-20">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
           <Database className="w-4 h-4" />
           ENTERPRISE SYSTEMS PRACTICE
@@ -35,7 +35,7 @@ export const ErpSalesforcePage: React.FC<ErpSalesforcePageProps> = ({
       </div>
 
       {/* Deep Dive Grid: Syspro ERP & Salesforce */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
         {/* Syspro ERP Practice */}
         <div className="bg-slate-50 border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm flex flex-col justify-between">
           <div>
@@ -151,7 +151,7 @@ export const ErpSalesforcePage: React.FC<ErpSalesforcePageProps> = ({
 
       {/* Integration Diagram Callout */}
       <section className="bg-slate-50 border-y border-slate-200 py-20 px-6 md:px-12 xl:px-16 mb-20">
-        <div className="max-w-[1280px] mx-auto text-center">
+        <div className="max-w-[1450px] mx-auto text-center">
           <RefreshCw className="w-12 h-12 text-blue-600 mx-auto mb-6" />
           <h2 className="text-3xl font-bold text-slate-900 mb-4">
             Unified Syspro ERP + Salesforce Integration Architecture
@@ -189,7 +189,7 @@ export const ErpSalesforcePage: React.FC<ErpSalesforcePageProps> = ({
       </section>
 
       {/* CTA */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto text-center">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto text-center">
         <h2 className="text-3xl font-extrabold text-slate-900 mb-4">
           Ready to Modernize Your ERP & CRM Infrastructure?
         </h2>

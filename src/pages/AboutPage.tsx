@@ -11,7 +11,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   return (
     <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Hero Banner */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto mb-20">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-20">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
           <Award className="w-4 h-4" />
           ABOUT SRV TECHNOLOGY
@@ -35,7 +35,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       </div>
 
       {/* Highlights Grid */}
-      <section className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto mb-24">
+      <section className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-24">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm">
           <div className="text-center p-4">
             <div className="text-4xl font-extrabold text-blue-700 font-mono mb-2">2018</div>
@@ -57,7 +57,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       </section>
 
       {/* Company Philosophy */}
-      <section className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto mb-24">
+      <section className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-24">
         <h2 className="text-3xl font-extrabold text-slate-900 mb-12">
           Our Engineering Principles
         </h2>
@@ -91,7 +91,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 
       {/* Global Offices */}
       <section className="bg-slate-50 border-y border-slate-200 py-20 px-6 md:px-12 xl:px-16 mb-20">
-        <div className="max-w-[1280px] mx-auto text-center">
+        <div className="max-w-[1450px] mx-auto text-center">
           <Globe className="w-12 h-12 text-blue-600 mx-auto mb-6" />
           <h2 className="text-3xl font-bold text-slate-900 mb-4">
             Serving Global Enterprise Clients
@@ -112,7 +112,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       </section>
 
       {/* CTA */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto text-center">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto text-center">
         <h2 className="text-3xl font-extrabold text-slate-900 mb-4">
           Ready to Work with SRV Technology?
         </h2>

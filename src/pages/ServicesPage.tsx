@@ -69,7 +69,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
   return (
     <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Page Header */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto mb-16">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-16">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
           <span className="w-2 h-2 rounded-full bg-blue-600" />
           SRV TECHNOLOGY SERVICES DIRECTORY
@@ -108,7 +108,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       </div>
 
       {/* Services List Grid */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
         {filteredServices.map((service) => (
           <div
             key={service.id}
@@ -187,7 +187,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       </div>
 
       {/* Quick Consultation Callout */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto">
         <div className="bg-slate-50 border border-slate-200 rounded-3xl p-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left shadow-sm">
           <div>
             <h3 className="text-2xl font-bold text-slate-900 mb-2">

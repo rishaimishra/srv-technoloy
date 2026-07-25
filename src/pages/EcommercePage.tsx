@@ -11,7 +11,7 @@ export const EcommercePage: React.FC<EcommercePageProps> = ({
   return (
     <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Header Banner */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto mb-20">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-20">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
           <ShoppingCart className="w-4 h-4" />
           E-COMMERCE ENGINEERING PRACTICE
@@ -35,7 +35,7 @@ export const EcommercePage: React.FC<EcommercePageProps> = ({
       </div>
 
       {/* Platform Breakdown */}
-      <section className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto mb-24">
+      <section className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-24">
         <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 mb-12 tracking-tight">
           Supported E-Commerce Ecosystems
         </h2>
@@ -129,7 +129,7 @@ export const EcommercePage: React.FC<EcommercePageProps> = ({
 
       {/* Feature Standards */}
       <section className="bg-slate-50 border-y border-slate-200 py-20 px-6 md:px-12 xl:px-16 mb-20">
-        <div className="max-w-[1280px] mx-auto">
+        <div className="max-w-[1450px] mx-auto">
           <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">
             E-Commerce Engineering Features Included
           </h2>
@@ -171,7 +171,7 @@ export const EcommercePage: React.FC<EcommercePageProps> = ({
       </section>
 
       {/* Call to Action */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto text-center">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto text-center">
         <h2 className="text-3xl font-extrabold text-slate-900 mb-4">
           Ready to Elevate Your Online Storefront?
         </h2>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
-import { Logo } from './Logo';
+import logoSrc from '../assets/images/srv-tech-board.png';
 
 interface HeaderProps {
   onOpenDrawer: () => void;
@@ -38,13 +38,13 @@ export const Header: React.FC<HeaderProps> = ({
       }`}
       id="main-header"
     >
-      <div className="flex justify-between items-center px-6 md:px-12 xl:px-16 w-full max-w-[1280px] mx-auto">
+      <div className="flex justify-between items-center px-6 md:px-12 xl:px-16 w-full max-w-[1450px] mx-auto">
         {/* Brand Logo */}
         <Link
           to="/"
           id="header-logo-btn"
         >
-          <Logo size="md" variant="dark" />
+          <img src={logoSrc} alt="SRV Technology" className="h-10 w-auto" />
         </Link>
 
         {/* Desktop Navigation Links */}

@@ -16,7 +16,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] opacity-40 pointer-events-none" />
 
-      <div className="relative z-10 px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto">
+      <div className="relative z-10 px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto">
         <div className="text-center mb-16 md:mb-20">
           <span className="text-blue-700 font-caps text-xs sm:text-sm tracking-widest block mb-3 font-bold uppercase">
             CORE EXPERTISE

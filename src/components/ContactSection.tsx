@@ -40,7 +40,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledSubject
 
   return (
     <section id="contact" className="py-24 bg-white border-t border-slate-200 font-sans">
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Contact Details (5 Cols) */}
           <div className="lg:col-span-5 flex flex-col justify-between">

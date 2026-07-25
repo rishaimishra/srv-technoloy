@@ -167,7 +167,7 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-100/60 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 right-0 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto">
+      <div className="relative z-10 px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
           <div className="inline-flex items-center gap-2 text-blue-700 font-caps text-xs tracking-widest font-bold px-3.5 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 uppercase mb-4 shadow-sm">

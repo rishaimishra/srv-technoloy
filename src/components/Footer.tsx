@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone } from 'lucide-react';
-import { Logo } from './Logo';
+import logoSrc from '../assets/images/srv-tech-board.png';
 
 export const Footer: React.FC = () => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="bg-slate-900 border-t border-slate-800 pt-16 pb-12 text-slate-300 font-sans">
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
           {/* Brand Info (4 Cols) */}
           <div className="lg:col-span-4 space-y-6">
@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
               to="/"
               id="footer-logo"
             >
-              <Logo size="lg" />
+              <img src={logoSrc} alt="SRV Technology" className="h-14 w-auto" />
             </Link>
 
             <p className="text-sm text-slate-400 leading-relaxed">

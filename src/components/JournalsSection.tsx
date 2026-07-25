@@ -12,7 +12,7 @@ export const JournalsSection: React.FC<JournalsSectionProps> = ({ onSelectArticl
       {/* Background Architectural Dot Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-30 pointer-events-none" />
 
-      <div className="relative z-10 px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto">
+      <div className="relative z-10 px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
             <span className="text-blue-700 font-caps text-xs sm:text-sm tracking-widest block mb-2 font-bold uppercase">

@@ -24,7 +24,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectCaseSt
       <div className="absolute top-1/2 left-0 w-80 h-80 bg-blue-100/60 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto">
+      <div className="relative z-10 px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <span className="text-blue-700 font-caps text-xs sm:text-sm tracking-widest block mb-2 font-bold uppercase">

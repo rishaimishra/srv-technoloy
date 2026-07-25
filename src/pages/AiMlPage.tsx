@@ -11,7 +11,7 @@ export const AiMlPage: React.FC<AiMlPageProps> = ({
   return (
     <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Header Banner */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto mb-20">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-20">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
           <Cpu className="w-4 h-4" />
           ARTIFICIAL INTELLIGENCE & MACHINE LEARNING
@@ -35,7 +35,7 @@ export const AiMlPage: React.FC<AiMlPageProps> = ({
       </div>
 
       {/* AI Solutions Matrix */}
-      <section className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto mb-24">
+      <section className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-24">
         <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 mb-12 tracking-tight">
           Enterprise AI/ML Solutions We Deliver
         </h2>
@@ -128,7 +128,7 @@ export const AiMlPage: React.FC<AiMlPageProps> = ({
       </section>
 
       {/* CTA */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto text-center">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto text-center">
         <h2 className="text-3xl font-extrabold text-slate-900 mb-4">
           Ready to Add Artificial Intelligence to Your Software?
         </h2>

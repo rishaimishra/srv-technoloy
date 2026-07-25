@@ -77,7 +77,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       <StatsSection />
 
       {/* Primary Engineering Capabilities Carousel */}
-      <section className="py-24 px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto bg-white" id="home-capabilities">
+      <section className="py-24 px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto bg-white" id="home-capabilities">
         <Carousel
           id="services-carousel"
           autoPlay={true}
@@ -183,7 +183,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* Featured Case Studies Spotlight Carousel */}
       <section className="py-24 bg-slate-50 border-y border-slate-200 px-6 md:px-12 xl:px-16" id="home-featured-work">
-        <div className="max-w-[1280px] mx-auto">
+        <div className="max-w-[1450px] mx-auto">
           <Carousel
             id="case-studies-carousel"
             autoPlay={true}
@@ -263,7 +263,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       </section>
 
       {/* Client Endorsements & Long-Term Trust Carousel */}
-      <section className="py-24 px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto bg-white" id="home-testimonials">
+      <section className="py-24 px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto bg-white" id="home-testimonials">
         <Carousel
           id="testimonials-carousel"
           autoPlay={true}
@@ -309,7 +309,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       </section>
 
       {/* Banner Call to Action */}
-      <section className="py-20 px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto mb-16">
+      <section className="py-20 px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-16">
         <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-3xl p-10 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl border border-blue-800">
           <div className="max-w-2xl">
             <h3 className="text-2xl md:text-4xl font-extrabold text-white mb-4">

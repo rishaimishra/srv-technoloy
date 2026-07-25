@@ -6,7 +6,7 @@ export const ContactPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Header Banner */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto mb-16">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-16">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
           <Mail className="w-4 h-4" />
           GET IN TOUCH WITH SRV TECHNOLOGY
@@ -23,7 +23,7 @@ export const ContactPage: React.FC = () => {
       <ContactSection />
 
       {/* Direct Phone & Channels Grid */}
-      <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto mt-20">
+      <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mt-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 flex items-start gap-4 shadow-sm">
             <div className="p-3 bg-blue-100 rounded-xl text-blue-700">

@@ -219,7 +219,7 @@ export const TechAndClientsSection: React.FC = () => {
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-100/60 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-sky-100/60 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-[1280px] mx-auto px-6 md:px-12 xl:px-16 relative z-10">
+      <div className="max-w-[1450px] mx-auto px-6 md:px-12 xl:px-16 relative z-10">
         
         {/* CAROUSEL 1: CLIENTS WE HAVE WORKED WITH */}
         <div className="mb-24">
@@ -299,7 +299,7 @@ export const TechAndClientsSection: React.FC = () => {
                 <ShieldCheck className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="text-base sm:text-lg font-bold">100% Quality Assurance & Enterprise SLA Guarantee</h4>
+                <h4 className="text-base sm:text-lg font-bold text-white">100% Quality Assurance & Enterprise SLA Guarantee</h4>
                 <p className="text-xs sm:text-sm text-slate-300">Dedicated engineering teams with full source code ownership, strict IP NDAs, and 24/7 technical support.</p>
               </div>
             </div>
