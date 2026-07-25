@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { SEO } from '../components/SEO';
 import { JOURNAL_ARTICLES } from '../data/content';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 
@@ -29,18 +29,16 @@ export const BlogDetailPage: React.FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{article.title} | SRV Technology</title>
-        <meta name="description" content={article.summary} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={`${article.title} | SRV Technology`} />
-        <meta property="og:description" content={article.summary} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="article" />
-        <meta property="og:image" content={article.image} />
-        <meta property="article:published_time" content={article.date} />
-        <meta property="article:tag" content={article.tags.join(', ')} />
-      </Helmet>
+      <SEO
+        title={article.title}
+        description={article.summary}
+        canonical={canonicalUrl}
+        ogImage={article.image}
+        pageType="article"
+        publishedTime={article.date}
+        tags={article.tags}
+        keywords={article.tags}
+      />
 
       <article className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
         <div className="px-6 md:px-12 xl:px-16 max-w-[1280px] mx-auto">

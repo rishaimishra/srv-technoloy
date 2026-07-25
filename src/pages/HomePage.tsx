@@ -7,6 +7,7 @@ import { Carousel } from '../components/Carousel';
 import { ProcessSection } from '../components/ProcessSection';
 import { SERVICES_DATA, CASE_STUDIES, TESTIMONIALS } from '../data/content';
 import { ServiceItem, CaseStudy } from '../types';
+import { SEO } from '../components/SEO';
 import { Code, Smartphone, Database, Cloud, ShoppingCart, Cpu, ShieldCheck, ArrowRight, CheckCircle2, Star, Quote } from 'lucide-react';
 
 interface HomePageProps {
@@ -63,7 +64,14 @@ export const HomePage: React.FC<HomePageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans">
+    <>
+      <SEO
+        title="Best Website Development Company in Siliguri & West Bengal"
+        description="SRV Technology is the best website development company in West Bengal and Siliguri. We offer custom software, Syspro ERP, Salesforce CRM, mobile apps, e-commerce & AI/ML development. Web development agency serving Darjeeling & North Bengal since 2018."
+        canonical="https://srvtechnology.com"
+        keywords={['website development company West Bengal', 'web development agency Siliguri', 'best web developers Darjeeling', 'software company North Bengal', 'IT company Siliguri', 'web development Darjeeling']}
+      />
+      <div className="min-h-screen bg-white text-slate-900 font-sans">
       {/* Main Hero */}
       <Hero
         onRequestQuote={onOpenQuoteRequest}
@@ -337,6 +345,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
     </div>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEO } from '../components/SEO';
 import { Smartphone, CheckCircle2, ShieldCheck, Zap, Layers, Apple } from 'lucide-react';
 
 interface MobileAppPageProps {
@@ -9,7 +10,14 @@ export const MobileAppPage: React.FC<MobileAppPageProps> = ({
   onOpenQuoteRequest,
 }) => {
   return (
-    <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
+    <>
+      <SEO
+        title="Mobile App Development in Siliguri & West Bengal | SRV Technology"
+        description="SRV Technology builds cross-platform and native iOS/Android mobile apps in Siliguri, West Bengal. React Native, Flutter, Swift & Kotlin development. Mobile app agency serving Darjeeling & North Bengal."
+        canonical="https://srvtechnology.com/services/mobile-apps"
+        keywords={['mobile app development Siliguri', 'app development company West Bengal', 'React Native developer Darjeeling', 'Flutter app North Bengal']}
+      />
+      <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Hero Banner */}
       <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-20">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
@@ -177,6 +185,7 @@ export const MobileAppPage: React.FC<MobileAppPageProps> = ({
         </button>
       </div>
     </div>
+    </>
   );
 };
 

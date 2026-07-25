@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEO } from '../components/SEO';
 import { Code, Globe, CheckCircle2, Server } from 'lucide-react';
 
 interface CustomSoftwarePageProps {
@@ -9,7 +10,14 @@ export const CustomSoftwarePage: React.FC<CustomSoftwarePageProps> = ({
   onOpenQuoteRequest,
 }) => {
   return (
-    <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
+    <>
+      <SEO
+        title="Custom Software Development in Siliguri | SRV Technology"
+        description="SRV Technology builds bespoke enterprise software & web applications in Siliguri and West Bengal. React, Node.js, Python microservices & cloud-native platforms. Top software development company in North Bengal."
+        canonical="https://srvtechnology.com/services/custom-software"
+        keywords={['custom software development Siliguri', 'software development company West Bengal', 'web application development Darjeeling']}
+      />
+      <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Banner */}
       <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-20">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
@@ -85,6 +93,7 @@ export const CustomSoftwarePage: React.FC<CustomSoftwarePageProps> = ({
         </button>
       </div>
     </div>
+    </>
   );
 };
 

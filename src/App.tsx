@@ -20,6 +20,7 @@ import { BlogListPage } from './pages/BlogListPage';
 import { BlogDetailPage } from './pages/BlogDetailPage';
 
 // Modals
+import { LocalBusinessSchema } from './components/LocalBusinessSchema';
 import { CaseStudyModal } from './components/CaseStudyModal';
 import { ServiceDetailModal } from './components/ServiceDetailModal';
 import { ArticleModal } from './components/ArticleModal';
@@ -59,6 +60,8 @@ export function App() {
     <BrowserRouter>
       <ScrollToTop />
       <div className="min-h-screen bg-[#131313] text-[#e2e2e2] selection:bg-[#1163fb] selection:text-white relative flex flex-col justify-between">
+        <LocalBusinessSchema />
+
         {/* Top App Header */}
         <Header
           onOpenDrawer={() => setIsDrawerOpen(true)}

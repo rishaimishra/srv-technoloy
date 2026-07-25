@@ -1,21 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { SEO } from '../components/SEO';
 import { JOURNAL_ARTICLES } from '../data/content';
 import { BookOpen, Clock, Calendar, ArrowRight } from 'lucide-react';
 
 export const BlogListPage: React.FC = () => {
   return (
     <>
-      <Helmet>
-        <title>Blog & Technical Insights | SRV Technology</title>
-        <meta name="description" content="In-depth technical guides on Syspro ERP e.net customization, Salesforce Apex & LWC development, React Native mobile optimization, and enterprise AI implementations." />
-        <link rel="canonical" href="https://srvtechnology.com/blog" />
-        <meta property="og:title" content="Blog & Technical Insights | SRV Technology" />
-        <meta property="og:description" content="Technical engineering guides on Syspro ERP, Salesforce Apex, React Native, and AI models from SRV Technology." />
-        <meta property="og:url" content="https://srvtechnology.com/blog" />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <SEO
+        title="Blog | Web Development Company in Siliguri & West Bengal"
+        description="Technical articles from SRV Technology, the best website development company in West Bengal & Siliguri. Learn about Syspro ERP, Salesforce, React Native & AI from our engineering team."
+        canonical="https://srvtechnology.com/blog"
+        keywords={['web development blog Siliguri', 'software company West Bengal blog', 'tech insights Darjeeling']}
+      />
 
       <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
         <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-16">

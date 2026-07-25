@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CASE_STUDIES } from '../data/content';
 import { CaseStudy } from '../types';
+import { SEO } from '../components/SEO';
 import { ArrowRight, Trophy } from 'lucide-react';
 
 interface PortfolioPageProps {
@@ -23,7 +24,14 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
       });
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
+    <>
+      <SEO
+        title="Portfolio & Case Studies | Web Development Agency Siliguri"
+        description="Explore real-world enterprise projects by SRV Technology, the best web development company in Siliguri & West Bengal. Syspro ERP, Salesforce, AI/ML, mobile & e-commerce case studies."
+        canonical="https://srvtechnology.com/portfolio"
+        keywords={['web development portfolio Siliguri', 'software case studies West Bengal', 'ERP projects Darjeeling', 'IT portfolio North Bengal']}
+      />
+      <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Header Banner */}
       <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-16">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
@@ -146,6 +154,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
         </Link>
       </div>
     </div>
+    </>
   );
 };
 

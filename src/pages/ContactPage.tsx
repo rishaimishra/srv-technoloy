@@ -1,10 +1,18 @@
 import React from 'react';
+import { SEO } from '../components/SEO';
 import { ContactSection } from '../components/ContactSection';
 import { Mail, Phone, Clock } from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
+    <>
+      <SEO
+        title="Contact Web Development Agency in Siliguri | SRV Technology"
+        description="Contact SRV Technology, the leading web development agency in Siliguri & West Bengal. Get a free consultation for Syspro ERP, Salesforce, mobile apps, e-commerce & AI/ML. Serving Darjeeling & North Bengal."
+        canonical="https://srvtechnology.com/contact"
+        keywords={['contact web developer Siliguri', 'website development company West Bengal', 'IT agency Darjeeling', 'get quote North Bengal']}
+      />
+      <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Header Banner */}
       <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-16">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
@@ -65,6 +73,7 @@ export const ContactPage: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEO } from '../components/SEO';
 import { Cpu, CheckCircle2, Bot, Sparkles, Database, FileText, BarChart3 } from 'lucide-react';
 
 interface AiMlPageProps {
@@ -9,7 +10,14 @@ export const AiMlPage: React.FC<AiMlPageProps> = ({
   onOpenQuoteRequest,
 }) => {
   return (
-    <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
+    <>
+      <SEO
+        title="AI & ML Development in Siliguri | SRV Technology"
+        description="Production-grade AI, LLM & ML development in Siliguri, West Bengal. Gemini API integration, RAG vector search, predictive models & autonomous agents. AI agency serving Darjeeling & North Bengal."
+        canonical="https://srvtechnology.com/services/ai-ml"
+        keywords={['AI development Siliguri', 'machine learning company West Bengal', 'LLM integration Darjeeling', 'AI agency North Bengal']}
+      />
+      <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Header Banner */}
       <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-20">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
@@ -143,6 +151,7 @@ export const AiMlPage: React.FC<AiMlPageProps> = ({
         </button>
       </div>
     </div>
+    </>
   );
 };
 

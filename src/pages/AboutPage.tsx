@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEO } from '../components/SEO';
 import { Award, ShieldCheck, Globe, Terminal, HeartHandshake } from 'lucide-react';
 
 interface AboutPageProps {
@@ -9,7 +10,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   onOpenQuoteRequest,
 }) => {
   return (
-    <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
+    <>
+      <SEO
+        title="About SRV Technology | Web Development Agency in Siliguri"
+        description="SRV Technology is a trusted web development agency in Siliguri & West Bengal, founded in 2018. We deliver Syspro ERP, Salesforce CRM, custom software, mobile apps & AI/ML solutions from our North Bengal office."
+        canonical="https://srvtechnology.com/about"
+        keywords={['web development agency Siliguri', 'software company West Bengal', 'IT company Darjeeling', 'web developers North Bengal']}
+      />
+      <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Hero Banner */}
       <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-20">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
@@ -127,6 +135,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         </button>
       </div>
     </div>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEO } from '../components/SEO';
 import { ShoppingCart, CheckCircle2, ShieldCheck, Zap, Layers, CreditCard } from 'lucide-react';
 
 interface EcommercePageProps {
@@ -9,7 +10,14 @@ export const EcommercePage: React.FC<EcommercePageProps> = ({
   onOpenQuoteRequest,
 }) => {
   return (
-    <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
+    <>
+      <SEO
+        title="E-Commerce Development in Siliguri | SRV Technology"
+        description="Scalable e-commerce stores on Shopify, WooCommerce & Magento in Siliguri & West Bengal. Custom plugins, payment gateways, and ERP inventory sync. E-commerce agency serving Darjeeling."
+        canonical="https://srvtechnology.com/services/ecommerce"
+        keywords={['e-commerce development Siliguri', 'Shopify developer West Bengal', 'Magento agency Darjeeling', 'WooCommerce North Bengal']}
+      />
+      <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Header Banner */}
       <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-20">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
@@ -186,6 +194,7 @@ export const EcommercePage: React.FC<EcommercePageProps> = ({
         </button>
       </div>
     </div>
+    </>
   );
 };
 

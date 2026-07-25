@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { JOURNAL_ARTICLES } from '../data/content';
 import { JournalArticle } from '../types';
+import { SEO } from '../components/SEO';
 import { BookOpen, ArrowRight, Clock, Calendar } from 'lucide-react';
 
 interface InsightsPageProps {
@@ -12,7 +13,14 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
   onOpenArticle,
 }) => {
   return (
-    <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
+    <>
+      <SEO
+        title="Tech Blog & Insights | Web Development Company in West Bengal"
+        description="Technical guides from SRV Technology, the best web development company in West Bengal & Siliguri. Syspro ERP, Salesforce Apex, React Native & AI articles by our engineering team."
+        canonical="https://srvtechnology.com/insights"
+        keywords={['web development blog Siliguri', 'software engineering insights West Bengal', 'tech articles Darjeeling']}
+      />
+      <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Header Banner */}
       <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-16">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
@@ -102,6 +110,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
         </Link>
       </div>
     </div>
+    </>
   );
 };
 

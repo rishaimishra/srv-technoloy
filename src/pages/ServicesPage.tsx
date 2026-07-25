@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SERVICES_DATA } from '../data/content';
 import { ServiceItem } from '../types';
+import { SEO } from '../components/SEO';
 import { Code, Smartphone, Database, Cloud, ShoppingCart, Cpu, ShieldCheck, CheckCircle2, ArrowRight, Layers, FileCode, Terminal } from 'lucide-react';
 
 interface ServicesPageProps {
@@ -67,7 +68,14 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
+    <>
+      <SEO
+        title="Web Development & IT Services in Siliguri | SRV Technology"
+        description="Full-stack web development services in Siliguri and West Bengal. SRV Technology offers custom software, Syspro ERP, Salesforce, mobile apps, e-commerce, and AI/ML. Leading web development agency in Darjeeling & North Bengal."
+        canonical="https://srvtechnology.com/services"
+        keywords={['web development services Siliguri', 'IT company West Bengal', 'software agency Darjeeling', 'ERP services North Bengal', 'website development company Siliguri']}
+      />
+      <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">
       {/* Page Header */}
       <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto mb-16">
         <div className="flex items-center gap-2 text-blue-700 font-mono text-xs tracking-widest uppercase font-bold mb-4">
@@ -208,6 +216,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
         </div>
       </div>
     </div>
+    </>
   );
 };
 
