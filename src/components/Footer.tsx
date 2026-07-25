@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone } from 'lucide-react';
-import logoSrc from '../assets/images/srv-tech-board.png';
+import logoSrc from '../assets/images/srv-tech-board-footer.png';
 
 export const Footer: React.FC = () => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
