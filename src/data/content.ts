@@ -1,18 +1,31 @@
 import { ServiceItem, CaseStudy, Testimonial, JournalArticle } from '../types';
 
+import quetextImg from '../assets/clients/quetext.webp';
+import collarHireImg from '../assets/clients/collar-hire.webp';
+import theCaryCompanyImg from '../assets/clients/The-Carry-Company.webp';
+import jobdaddyImg from '../assets/clients/Jobdaddy.webp';
+import pedifImg from '../assets/clients/pedif.webp';
+import trackifyxImg from '../assets/clients/TrackifyX.webp';
+import almazraImg from '../assets/clients/almazra.webp';
+import halaladvisorImg from '../assets/clients/halaladvisor.webp';
+import koraBtImg from '../assets/clients/kora-bt.webp';
+import articleSeoImg from '../assets/articles/seo.webp';
+import articleAiMlImg from '../assets/articles/ai-ml.webp';
+import articleEcommerceImg from '../assets/articles/ecommerce.webp';
+
 export const HOTLINK_IMAGES = {
-  Quetext: 'src/assets/clients/quetext.webp',
-  collarHire: 'src/assets/clients/collar-hire.webp',
-  theCaryCompany: 'src/assets/clients/The-Carry-Company.webp',
-  jobdaddy: 'src/assets/clients/Jobdaddy.webp',
-  pedif: 'src/assets/clients/pedif.webp',
-  trackifyx: 'src/assets/clients/TrackifyX.webp',
-  almazra: 'src/assets/clients/almazra.webp',
-  halaladvisor: 'src/assets/clients/halaladvisor.webp',
-  koraBt: 'src/assets/clients/kora-bt.webp',
-  articleSeo: 'src/assets/articles/seo.webp',
-  articleAiMl: 'src/assets/articles/ai-ml.webp',
-  articleEcommerce: 'src/assets/articles/ecommerce.webp',
+  Quetext: quetextImg,
+  collarHire: collarHireImg,
+  theCaryCompany: theCaryCompanyImg,
+  jobdaddy: jobdaddyImg,
+  pedif: pedifImg,
+  trackifyx: trackifyxImg,
+  almazra: almazraImg,
+  halaladvisor: halaladvisorImg,
+  koraBt: koraBtImg,
+  articleSeo: articleSeoImg,
+  articleAiMl: articleAiMlImg,
+  articleEcommerce: articleEcommerceImg,
 };
 
 export const SERVICES_DATA: ServiceItem[] = [
