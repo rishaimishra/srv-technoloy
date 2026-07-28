@@ -197,7 +197,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     overview: 'Lumenox required a ground-up transformation of their legacy operational dashboard into a resilient, real-time enterprise management ecosystem. SRV Technology engineered a decoupled architecture using React 19 on the front end and high-concurrency Laravel APIs on the backend.',
     challenge: 'The existing platform suffered from database lockups under high concurrency, lagging data updates for regional teams, and an outdated user interface that hindered staff productivity.',
     solution: 'We architected a distributed event-driven system leveraging Redis caching, optimized PostgreSQL database indexing, and a modern micro-frontend UI layer. Real-time updates were implemented using WebSocket push events.',
-    techStack: ['React', 'Laravel', 'Redis', 'PostgreSQL', 'Tailwind CSS', 'Docker']
+    techStack: ['Nodejs', 'Redis', 'PostgreSQL', 'Tailwind CSS', 'Docker']
   },
   {
     id: 'collar-hire',
