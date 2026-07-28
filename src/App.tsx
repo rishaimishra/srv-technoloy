@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { ProtectedRoute } from './components/ProtectedRoute';
 import { Header } from './components/Header';
 import { SideDrawer } from './components/SideDrawer';
 import { Footer } from './components/Footer';
@@ -19,6 +21,11 @@ import { ContactPage } from './pages/ContactPage';
 import { BlogListPage } from './pages/BlogListPage';
 import { BlogDetailPage } from './pages/BlogDetailPage';
 
+// Admin Pages
+import { AdminLogin } from './pages/AdminLogin';
+import { AdminDashboard } from './pages/AdminDashboard';
+import { AdminBlogEditor } from './pages/AdminBlogEditor';
+
 // Modals
 import { LocalBusinessSchema } from './components/LocalBusinessSchema';
 import { CaseStudyModal } from './components/CaseStudyModal';
@@ -27,18 +34,13 @@ import { ArticleModal } from './components/ArticleModal';
 import { QuoteRequestModal } from './components/QuoteRequestModal';
 import { CaseStudy, ServiceItem, JournalArticle } from './types';
 
-// Scroll to top helper on route change
 function ScrollToTop() {
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
   return null;
 }
 
-export function App() {
+function MainLayout() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [quotePrefill, setQuotePrefill] = useState('');
@@ -48,180 +50,68 @@ export function App() {
   const [selectedArticle, setSelectedArticle] = useState<JournalArticle | null>(null);
 
   const handleRequestQuote = (prefilledText?: string) => {
-    if (prefilledText) {
-      setQuotePrefill(prefilledText);
-    } else {
-      setQuotePrefill('');
-    }
+    if (prefilledText) setQuotePrefill(prefilledText);
+    else setQuotePrefill('');
     setIsQuoteOpen(true);
   };
 
   return (
+    <div className="min-h-screen bg-[#131313] text-[#e2e2e2] selection:bg-[#1163fb] selection:text-white relative flex flex-col justify-between">
+      <LocalBusinessSchema />
+      <Header onOpenDrawer={() => setIsDrawerOpen(true)} />
+      <main className="flex-1">
+        <Routes>
+          <Route path="/" element={<HomePage onOpenServiceDetail={(s) => setSelectedService(s)} onOpenCaseStudy={(s) => setSelectedCaseStudy(s)} onOpenQuoteRequest={() => handleRequestQuote()} />} />
+          <Route path="/services" element={<ServicesPage onOpenServiceDetail={(s) => setSelectedService(s)} onOpenQuoteRequest={() => handleRequestQuote()} />} />
+          <Route path="/services/custom-software" element={<CustomSoftwarePage onOpenQuoteRequest={() => handleRequestQuote()} />} />
+          <Route path="/services/mobile-apps" element={<MobileAppPage onOpenQuoteRequest={() => handleRequestQuote()} />} />
+          <Route path="/services/erp-salesforce" element={<ErpSalesforcePage onOpenQuoteRequest={() => handleRequestQuote()} />} />
+          <Route path="/services/ecommerce" element={<EcommercePage onOpenQuoteRequest={() => handleRequestQuote()} />} />
+          <Route path="/services/ai-ml" element={<AiMlPage onOpenQuoteRequest={() => handleRequestQuote()} />} />
+          <Route path="/portfolio" element={<PortfolioPage onOpenCaseStudy={(s) => setSelectedCaseStudy(s)} />} />
+          <Route path="/about" element={<AboutPage onOpenQuoteRequest={() => handleRequestQuote()} />} />
+          <Route path="/insights" element={<InsightsPage onOpenArticle={(a) => setSelectedArticle(a)} />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/blog" element={<BlogListPage />} />
+          <Route path="/blog/:slug" element={<BlogDetailPage />} />
+        </Routes>
+      </main>
+      <Footer />
+      <SideDrawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)} />
+      <CaseStudyModal caseStudy={selectedCaseStudy} onClose={() => setSelectedCaseStudy(null)} onRequestQuoteForCaseStudy={(title) => handleRequestQuote(`Inquiry regarding case study: ${title}`)} />
+      <ServiceDetailModal service={selectedService} onClose={() => setSelectedService(null)} onRequestQuoteForService={(title) => handleRequestQuote(`Quote for Service: ${title}`)} />
+      <ArticleModal article={selectedArticle} onClose={() => setSelectedArticle(null)} />
+      <QuoteRequestModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} prefilledNotes={quotePrefill} />
+    </div>
+  );
+}
+
+function AdminRoutes() {
+  return (
+    <Routes>
+      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+      <Route path="/admin/blog/new" element={<ProtectedRoute><AdminBlogEditor /></ProtectedRoute>} />
+      <Route path="/admin/blog/:id/edit" element={<ProtectedRoute><AdminBlogEditor /></ProtectedRoute>} />
+    </Routes>
+  );
+}
+
+function AppShell() {
+  const { pathname } = useLocation();
+  const isAdmin = pathname.startsWith('/admin');
+
+  if (isAdmin) return <AdminRoutes />;
+  return <MainLayout />;
+}
+
+export function App() {
+  return (
     <BrowserRouter>
-      <ScrollToTop />
-      <div className="min-h-screen bg-[#131313] text-[#e2e2e2] selection:bg-[#1163fb] selection:text-white relative flex flex-col justify-between">
-        <LocalBusinessSchema />
-
-        {/* Top App Header */}
-        <Header
-          onOpenDrawer={() => setIsDrawerOpen(true)}
-        />
-
-        {/* Main Route Views */}
-        <main className="flex-1">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <HomePage
-                  onOpenServiceDetail={(service) => setSelectedService(service)}
-                  onOpenCaseStudy={(study) => setSelectedCaseStudy(study)}
-                  onOpenQuoteRequest={() => handleRequestQuote()}
-                />
-              }
-            />
-
-            <Route
-              path="/services"
-              element={
-                <ServicesPage
-                  onOpenServiceDetail={(service) => setSelectedService(service)}
-                  onOpenQuoteRequest={() => handleRequestQuote()}
-                />
-              }
-            />
-
-            <Route
-              path="/services/custom-software"
-              element={
-                <CustomSoftwarePage
-                  onOpenQuoteRequest={() => handleRequestQuote()}
-                />
-              }
-            />
-
-            <Route
-              path="/services/mobile-apps"
-              element={
-                <MobileAppPage
-                  onOpenQuoteRequest={() => handleRequestQuote()}
-                />
-              }
-            />
-
-            <Route
-              path="/services/erp-salesforce"
-              element={
-                <ErpSalesforcePage
-                  onOpenQuoteRequest={() => handleRequestQuote()}
-                />
-              }
-            />
-
-            <Route
-              path="/services/ecommerce"
-              element={
-                <EcommercePage
-                  onOpenQuoteRequest={() => handleRequestQuote()}
-                />
-              }
-            />
-
-            <Route
-              path="/services/ai-ml"
-              element={
-                <AiMlPage
-                  onOpenQuoteRequest={() => handleRequestQuote()}
-                />
-              }
-            />
-
-            <Route
-              path="/portfolio"
-              element={
-                <PortfolioPage
-                  onOpenCaseStudy={(study) => setSelectedCaseStudy(study)}
-                />
-              }
-            />
-
-            <Route
-              path="/about"
-              element={
-                <AboutPage
-                  onOpenQuoteRequest={() => handleRequestQuote()}
-                />
-              }
-            />
-
-            <Route
-              path="/insights"
-              element={
-                <InsightsPage
-                  onOpenArticle={(article) => setSelectedArticle(article)}
-                />
-              }
-            />
-
-            <Route
-              path="/contact"
-              element={
-                <ContactPage />
-              }
-            />
-
-            <Route
-              path="/blog"
-              element={
-                <BlogListPage />
-              }
-            />
-
-            <Route
-              path="/blog/:slug"
-              element={
-                <BlogDetailPage />
-              }
-            />
-          </Routes>
-        </main>
-
-        {/* Footer */}
-        <Footer />
-
-        {/* Side Drawer */}
-        <SideDrawer
-          isOpen={isDrawerOpen}
-          onClose={() => setIsDrawerOpen(false)}
-        />
-
-        {/* Case Study Detail Modal */}
-        <CaseStudyModal
-          caseStudy={selectedCaseStudy}
-          onClose={() => setSelectedCaseStudy(null)}
-          onRequestQuoteForCaseStudy={(title) => handleRequestQuote(`Inquiry regarding case study: ${title}`)}
-        />
-
-        {/* Service Detail Modal */}
-        <ServiceDetailModal
-          service={selectedService}
-          onClose={() => setSelectedService(null)}
-          onRequestQuoteForService={(title) => handleRequestQuote(`Quote for Service: ${title}`)}
-        />
-
-        {/* Article Reader Modal */}
-        <ArticleModal
-          article={selectedArticle}
-          onClose={() => setSelectedArticle(null)}
-        />
-
-        {/* Quote Request Modal */}
-        <QuoteRequestModal
-          isOpen={isQuoteOpen}
-          onClose={() => setIsQuoteOpen(false)}
-          prefilledNotes={quotePrefill}
-        />
-      </div>
+      <AuthProvider>
+        <ScrollToTop />
+        <AppShell />
+      </AuthProvider>
     </BrowserRouter>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { JOURNAL_ARTICLES } from '../data/content';
+import { useBlogArticles } from '../hooks/useBlogArticles';
 import { JournalArticle } from '../types';
 
 interface JournalsSectionProps {
@@ -8,6 +8,8 @@ interface JournalsSectionProps {
 }
 
 export const JournalsSection: React.FC<JournalsSectionProps> = ({ onSelectArticle }) => {
+  const { articles } = useBlogArticles();
+
   return (
     <section id="journals" className="py-24 bg-white border-t border-slate-200/80 relative overflow-hidden">
       {/* Background Architectural Dot Pattern */}
@@ -31,7 +33,7 @@ export const JournalsSection: React.FC<JournalsSectionProps> = ({ onSelectArticl
 
         {/* Article Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {JOURNAL_ARTICLES.map((article) => (
+          {articles.map((article) => (
             <article
               key={article.id}
               onClick={() => onSelectArticle(article)}

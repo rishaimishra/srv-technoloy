@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { JOURNAL_ARTICLES } from '../data/content';
+import { useBlogArticles } from '../hooks/useBlogArticles';
 import { JournalArticle } from '../types';
 import { SEO } from '../components/SEO';
 import { BookOpen, ArrowRight, Clock, Calendar } from 'lucide-react';
@@ -12,6 +12,8 @@ interface InsightsPageProps {
 export const InsightsPage: React.FC<InsightsPageProps> = ({
   onOpenArticle,
 }) => {
+  const { articles, loading } = useBlogArticles();
+
   return (
     <>
       <SEO
@@ -37,7 +39,10 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
 
       {/* Articles Grid */}
       <div className="px-6 md:px-12 xl:px-16 max-w-[1450px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-        {JOURNAL_ARTICLES.map((article) => (
+        {loading && articles.length === 0 && (
+          <div className="col-span-full text-center py-12 text-slate-400">Loading articles...</div>
+        )}
+        {articles.map((article) => (
           <div
             key={article.id}
             className="bg-white border border-slate-200 rounded-3xl overflow-hidden hover:border-blue-500 transition-all duration-300 flex flex-col group shadow-sm hover:shadow-md"

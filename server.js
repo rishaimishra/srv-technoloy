@@ -2,17 +2,221 @@ import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import nodemailer from 'nodemailer';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import cors from 'cors';
+import multer from 'multer';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const JWT_SECRET = process.env.JWT_SECRET || 'srv-blog-cms-secret-change-in-production';
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Admin@123!';
+
+const DATA_DIR = path.join(__dirname, 'data');
+const UPLOADS_DIR = path.join(__dirname, 'public', 'uploads');
+if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
+if (!existsSync(UPLOADS_DIR)) mkdirSync(UPLOADS_DIR, { recursive: true });
+
+const BLOG_FILE = path.join(DATA_DIR, 'blog.json');
+
+function loadArticles() {
+  if (!existsSync(BLOG_FILE)) return [];
+  try {
+    return JSON.parse(readFileSync(BLOG_FILE, 'utf-8'));
+  } catch { return []; }
+}
+
+function saveArticles(articles) {
+  writeFileSync(BLOG_FILE, JSON.stringify(articles, null, 2), 'utf-8');
+}
+
+const SEED_ARTICLES = [
+  {
+    id: 'syspro-salesforce-integration',
+    title: 'Bridging Enterprise ERP and CRM: Syspro & Salesforce Integration Strategies',
+    category: 'ENTERPRISE SYSTEMS',
+    date: '15 JAN 2026',
+    readTime: '6 min read',
+    image: '',
+    summary: 'How real-time synchronization between Syspro ERP and Salesforce Sales Cloud drives operational efficiency and order accuracy.',
+    content: [
+      'For mid-market and global enterprises, disconnecting inventory data in Syspro ERP from sales pipelines in Salesforce creates operational friction and order delays.',
+      'By leveraging Syspro e.net Business Objects with custom Salesforce Apex triggers and Lightning Web Components, SRV Technology establishes bi-directional sync for inventory, custom price tiers, and customer order histories.',
+      'This architecture ensures sales representatives have instant inventory visibility while warehouse teams receive automated order fulfillment requests as soon as deals close.',
+    ],
+    tags: ['Syspro ERP', 'Salesforce', 'Enterprise Integration', 'Apex', 'e.net'],
+  },
+  {
+    id: 'ai-ml-decisions',
+    title: 'How AI and Machine Learning Are Helping Smarter Decisions',
+    category: 'AI / ML',
+    date: '15 JAN 2026',
+    readTime: '7 min read',
+    image: '',
+    summary: 'How predictive modeling and generative AI agents are streamlining supply chains, talent acquisition, and operational risk.',
+    content: [
+      'Modern enterprises generate terabytes of operational telemetry daily, but actionable insight remains scarce without intelligent automated analysis.',
+      'By implementing fine-tuned predictive machine learning models and LLM agents, companies can automate routine data transformations and receive proactive anomaly alerts before system bottlenecks occur.',
+      'Our team specializes in creating production-grade AI pipelines that seamlessly hook into existing databases with enterprise-level access controls and data privacy.',
+    ],
+    tags: ['Artificial Intelligence', 'Machine Learning', 'Data Analytics', 'LLM Integration'],
+  },
+  {
+    id: 'ecommerce-future-2026',
+    title: 'The Future of E-Commerce in 2026: Redefining Online Shopping',
+    category: 'ECOMMERCE',
+    date: '15 JAN 2026',
+    readTime: '6 min read',
+    image: '',
+    summary: 'Headless storefronts, instant AI shopping assistants, and hyper-personalized checkout flows are shaping the modern shopping cart.',
+    content: [
+      'The traditional monolithic e-commerce stack is quickly giving way to modular, API-first architecture. Retailers need the agility to push new promotional storefronts in hours rather than weeks.',
+      'Integrating 3D product previews, instant localized tax and shipping calculators, and friction-free payment methods directly increases checkout conversion rates by up to 35%.',
+      'Learn how SRV Technology built custom high-volume commerce engines for brands like The Cary Company to handle millions in annual transaction volumes.',
+    ],
+    tags: ['E-Commerce', 'Magento', 'Headless Web', 'Conversion Rate'],
+  },
+];
+
+function seedArticles() {
+  if (!existsSync(BLOG_FILE) || loadArticles().length === 0) {
+    saveArticles(SEED_ARTICLES);
+    console.log(`Seeded ${SEED_ARTICLES.length} articles`);
+  }
+}
+
+let hashedPassword = null;
+
+async function getHashedPassword() {
+  if (!hashedPassword) {
+    const salt = await bcrypt.genSalt(10);
+    hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, salt);
+  }
+  return hashedPassword;
+}
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
-// Serve built SPA with history fallback for BrowserRouter
-app.use(express.static(path.join(__dirname, 'dist')));
-app.get('*', (_req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+const storage = multer.diskStorage({
+  destination: (_req, _file, cb) => cb(null, UPLOADS_DIR),
+  filename: (_req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, `${Date.now()}-${Math.round(Math.random() * 1e9)}${ext}`);
+  },
+});
+const upload = multer({ storage, limits: { fileSize: 5 * 1024 * 1024 } });
+
+function authMiddleware(req, res, next) {
+  const header = req.headers.authorization;
+  if (!header || !header.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  try {
+    jwt.verify(header.split(' ')[1], JWT_SECRET);
+    next();
+  } catch {
+    return res.status(401).json({ error: 'Invalid or expired token' });
+  }
+}
+
+app.post('/api/auth/login', async (req, res) => {
+  const { username, password } = req.body || {};
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Username and password required' });
+  }
+  if (username !== ADMIN_USERNAME) {
+    return res.status(401).json({ error: 'Invalid credentials' });
+  }
+  const hash = await getHashedPassword();
+  const valid = await bcrypt.compare(password, hash);
+  if (!valid) {
+    return res.status(401).json({ error: 'Invalid credentials' });
+  }
+  const token = jwt.sign({ username, role: 'admin' }, JWT_SECRET, { expiresIn: '7d' });
+  res.json({ token, username });
+});
+
+app.get('/api/auth/verify', authMiddleware, (_req, res) => {
+  res.json({ valid: true });
+});
+
+app.get('/api/blog', (_req, res) => {
+  const articles = loadArticles();
+  res.json(articles);
+});
+
+app.get('/api/blog/:id', (req, res) => {
+  const articles = loadArticles();
+  const article = articles.find(a => a.id === req.params.id);
+  if (!article) return res.status(404).json({ error: 'Article not found' });
+  res.json(article);
+});
+
+app.post('/api/blog', authMiddleware, (req, res) => {
+  const { id, title, category, date, readTime, image, summary, content, tags } = req.body || {};
+  if (!id || !title || !summary || !content) {
+    return res.status(400).json({ error: 'id, title, summary, content are required' });
+  }
+  const articles = loadArticles();
+  if (articles.find(a => a.id === id)) {
+    return res.status(409).json({ error: 'Article with this ID already exists' });
+  }
+  const article = {
+    id,
+    title: title || '',
+    category: category || 'GENERAL',
+    date: date || new Date().toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase(),
+    readTime: readTime || '',
+    image: image || '',
+    summary,
+    content: Array.isArray(content) ? content : [content],
+    tags: tags || [],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+  articles.push(article);
+  saveArticles(articles);
+  res.status(201).json(article);
+});
+
+app.put('/api/blog/:id', authMiddleware, (req, res) => {
+  const articles = loadArticles();
+  const idx = articles.findIndex(a => a.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'Article not found' });
+  const existing = articles[idx];
+  const { title, category, date, readTime, image, summary, content, tags } = req.body || {};
+  articles[idx] = {
+    ...existing,
+    title: title ?? existing.title,
+    category: category ?? existing.category,
+    date: date ?? existing.date,
+    readTime: readTime ?? existing.readTime,
+    image: image ?? existing.image,
+    summary: summary ?? existing.summary,
+    content: content ?? existing.content,
+    tags: tags ?? existing.tags,
+    updatedAt: new Date().toISOString(),
+  };
+  saveArticles(articles);
+  res.json(articles[idx]);
+});
+
+app.delete('/api/blog/:id', authMiddleware, (req, res) => {
+  const articles = loadArticles();
+  const idx = articles.findIndex(a => a.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'Article not found' });
+  articles.splice(idx, 1);
+  saveArticles(articles);
+  res.json({ success: true });
+});
+
+app.post('/api/blog/upload', authMiddleware, upload.single('image'), (req, res) => {
+  if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+  res.json({ url: `/uploads/${req.file.filename}` });
 });
 
 const transporter = nodemailer.createTransport({
@@ -40,11 +244,9 @@ async function sendMail({ subject, replyTo, html }) {
 
 app.post('/api/contact', async (req, res) => {
   const { firstName, lastName, email, phone, projectType, budget, message } = req.body || {};
-
   if (!firstName || !lastName || !email || !message) {
     return res.status(400).json({ error: 'Missing required fields.' });
   }
-
   try {
     await sendMail({
       subject: `New Consultation Request — ${firstName} ${lastName}`,
@@ -69,11 +271,9 @@ app.post('/api/contact', async (req, res) => {
 
 app.post('/api/quote', async (req, res) => {
   const { name, email, service, notes } = req.body || {};
-
   if (!name || !email || !service) {
     return res.status(400).json({ error: 'Missing required fields.' });
   }
-
   try {
     await sendMail({
       subject: `New Quote Request — ${name}`,
@@ -96,11 +296,9 @@ app.post('/api/quote', async (req, res) => {
 
 app.post('/api/subscribe', async (req, res) => {
   const { email } = req.body || {};
-
   if (!email) {
     return res.status(400).json({ error: 'Missing required fields.' });
   }
-
   try {
     await sendMail({
       subject: 'New Newsletter Subscriber',
@@ -117,7 +315,15 @@ app.post('/api/subscribe', async (req, res) => {
   }
 });
 
+app.use('/uploads', express.static(UPLOADS_DIR));
+app.use(express.static(path.join(__dirname, 'dist')));
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 const PORT = process.env.PORT || 8787;
+seedArticles();
 app.listen(PORT, () => {
-  console.log(`SMTP API server listening on port ${PORT}`);
+  console.log(`Server listening on port ${PORT}`);
+  console.log(`Admin login: ${ADMIN_USERNAME}`);
 });

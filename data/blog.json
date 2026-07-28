@@ -1,0 +1,64 @@
+[
+  {
+    "id": "syspro-salesforce-integration",
+    "title": "Bridging Enterprise ERP and CRM: Syspro & Salesforce Integration Strategies",
+    "category": "ENTERPRISE SYSTEMS",
+    "date": "15 JAN 2026",
+    "readTime": "6 min read",
+    "image": "",
+    "summary": "How real-time synchronization between Syspro ERP and Salesforce Sales Cloud drives operational efficiency and order accuracy.",
+    "content": [
+      "For mid-market and global enterprises, disconnecting inventory data in Syspro ERP from sales pipelines in Salesforce creates operational friction and order delays.",
+      "By leveraging Syspro e.net Business Objects with custom Salesforce Apex triggers and Lightning Web Components, SRV Technology establishes bi-directional sync for inventory, custom price tiers, and customer order histories.",
+      "This architecture ensures sales representatives have instant inventory visibility while warehouse teams receive automated order fulfillment requests as soon as deals close."
+    ],
+    "tags": [
+      "Syspro ERP",
+      "Salesforce",
+      "Enterprise Integration",
+      "Apex",
+      "e.net"
+    ],
+    "updatedAt": "2026-07-28T11:42:22.965Z"
+  },
+  {
+    "id": "ai-ml-decisions",
+    "title": "How AI and Machine Learning Are Helping Smarter Decisions",
+    "category": "AI / ML",
+    "date": "15 JAN 2026",
+    "readTime": "7 min read",
+    "image": "",
+    "summary": "How predictive modeling and generative AI agents are streamlining supply chains, talent acquisition, and operational risk.",
+    "content": [
+      "Modern enterprises generate terabytes of operational telemetry daily, but actionable insight remains scarce without intelligent automated analysis.",
+      "By implementing fine-tuned predictive machine learning models and LLM agents, companies can automate routine data transformations and receive proactive anomaly alerts before system bottlenecks occur.",
+      "Our team specializes in creating production-grade AI pipelines that seamlessly hook into existing databases with enterprise-level access controls and data privacy."
+    ],
+    "tags": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Data Analytics",
+      "LLM Integration"
+    ]
+  },
+  {
+    "id": "ecommerce-future-2026",
+    "title": "The Future of E-Commerce in 2026: Redefining Online Shopping",
+    "category": "ECOMMERCE",
+    "date": "15 JAN 2026",
+    "readTime": "6 min read",
+    "image": "",
+    "summary": "Headless storefronts, instant AI shopping assistants, and hyper-personalized checkout flows are shaping the modern shopping cart.",
+    "content": [
+      "The traditional monolithic e-commerce stack is quickly giving way to modular, API-first architecture. Retailers need the agility to push new promotional storefronts in hours rather than weeks.",
+      "Integrating 3D product previews, instant localized tax and shipping calculators, and friction-free payment methods directly increases checkout conversion rates by up to 35%.",
+      "Learn how SRV Technology built custom high-volume commerce engines for brands like The Cary Company to handle millions in annual transaction volumes."
+    ],
+    "tags": [
+      "E-Commerce",
+      "Magento",
+      "Headless Web",
+      "Conversion Rate"
+    ]
+  }
+]

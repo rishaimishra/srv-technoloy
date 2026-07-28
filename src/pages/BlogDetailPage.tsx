@@ -1,12 +1,21 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
-import { JOURNAL_ARTICLES } from '../data/content';
+import { useBlogArticles } from '../hooks/useBlogArticles';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 
 export const BlogDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const article = JOURNAL_ARTICLES.find((a) => a.id === slug);
+  const { getArticle, loading } = useBlogArticles();
+  const article = getArticle(slug || '');
+
+  if (loading && !article) {
+    return (
+      <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans flex items-center justify-center">
+        <p className="text-slate-400">Loading article...</p>
+      </div>
+    );
+  }
 
   if (!article) {
     return (
