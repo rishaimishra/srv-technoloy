@@ -9,12 +9,31 @@ import { SERVICES_DATA, CASE_STUDIES, TESTIMONIALS } from '../data/content';
 import { ServiceItem, CaseStudy } from '../types';
 import { SEO } from '../components/SEO';
 import { Code, Smartphone, Database, Cloud, ShoppingCart, Cpu, ShieldCheck, ArrowRight, CheckCircle2, Star, Quote } from 'lucide-react';
+import customSoftwareImg from '../assets/articles/custom-software.webp';
+import webDevImg from '../assets/articles/web-dev.webp';
+import mobileDevImg from '../assets/articles/mobile-dev.webp';
+import erpSysproImg from '../assets/articles/erp-syspro.webp';
+import salesforceImg from '../assets/articles/salesforce.webp';
+import cybersecurityImg from '../assets/articles/cybersecurity.webp';
+import ecommerceImg from '../assets/articles/ecommerce.webp';
+import aiMlImg from '../assets/articles/ai-ml.webp';
 
 interface HomePageProps {
   onOpenServiceDetail: (service: ServiceItem) => void;
   onOpenCaseStudy: (study: CaseStudy) => void;
   onOpenQuoteRequest: () => void;
 }
+
+const serviceImages: Record<string, string> = {
+  'custom-software': customSoftwareImg,
+  'web-dev': webDevImg,
+  'mobile-dev': mobileDevImg,
+  'erp-syspro': erpSysproImg,
+  'salesforce': salesforceImg,
+  'cybersecurity': cybersecurityImg,
+  'ecommerce': ecommerceImg,
+  'ai-ml': aiMlImg,
+};
 
 export const HomePage: React.FC<HomePageProps> = ({
   onOpenServiceDetail,
@@ -110,17 +129,6 @@ export const HomePage: React.FC<HomePageProps> = ({
           }
           items={SERVICES_DATA}
           renderItem={(service) => {
-            const serviceImages: Record<string, string> = {
-              'custom-software': 'src/assets/articles/custom-software.webp',
-              'web-dev': 'src/assets/articles/web-dev.webp',
-              'mobile-dev': 'src/assets/articles/mobile-dev.webp',
-              'erp-syspro': 'src/assets/articles/erp-syspro.webp',
-              'salesforce': 'src/assets/articles/salesforce.webp',
-              'cybersecurity': 'src/assets/articles/cybersecurity.webp',
-              'ecommerce': 'src/assets/articles/ecommerce.webp',
-              'ai-ml': 'src/assets/articles/ai-ml.webp',
-            };
-
             return (
               <div
                 key={service.id}
