@@ -227,18 +227,44 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const RECEIVER_EMAILS = (process.env.CONTACT_RECEIVER_EMAILS || 'rishavbeas@gmail.com,rishav@srvtechnology.com,info@srvtechnology.com')
+const RECEIVER_EMAILS = (process.env.CONTACT_RECEIVER_EMAILS || 'rishav@srvtechnology.com')
   .split(',')
   .map((addr) => addr.trim())
   .filter(Boolean);
 
+const APP_URL = process.env.APP_URL || 'https://srvtechnology.com';
+
 async function sendMail({ subject, replyTo, html }) {
   return transporter.sendMail({
-    from: `"SRV Technology Website" <${process.env.SMTP_USER}>`,
+    from: `"SRV Technology" <${process.env.SMTP_USER}>`,
     to: RECEIVER_EMAILS,
     replyTo,
     subject,
     html,
+  });
+}
+
+async function sendAutoReply({ to, name }) {
+  return transporter.sendMail({
+    from: `"SRV Technology" <${process.env.SMTP_USER}>`,
+    to,
+    subject: 'Thank You for Contacting SRV Technology',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="background: linear-gradient(135deg, #1e40af, #3b82f6); padding: 30px; text-align: center; border-radius: 12px 12px 0 0;">
+          <h1 style="color: #fff; margin: 0; font-size: 24px;">Thank You, ${name}!</h1>
+        </div>
+        <div style="padding: 30px; background: #f8fafc; border: 1px solid #e2e8f0; border-top: none; border-radius: 0 0 12px 12px;">
+          <p style="color: #334155; font-size: 16px; line-height: 1.6;">We have received your message and our team will get back to you within 24 hours.</p>
+          <p style="color: #334155; font-size: 16px; line-height: 1.6;">In the meantime, feel free to explore our work and services:</p>
+          <div style="text-align: center; margin: 25px 0;">
+            <a href="${APP_URL}" style="background: #2563eb; color: #fff; padding: 12px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block;">Visit Our Website</a>
+          </div>
+          <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+          <p style="color: #64748b; font-size: 14px;">Best regards,<br><strong>SRV Technology Team</strong><br>${APP_URL}</p>
+        </div>
+      </div>
+    `,
   });
 }
 
@@ -262,6 +288,7 @@ app.post('/api/contact', async (req, res) => {
         <p>${message}</p>
       `,
     });
+    await sendAutoReply({ to: email, name: `${firstName} ${lastName}` }).catch(() => {});
     res.json({ success: true });
   } catch (err) {
     console.error('Failed to send contact email:', err);
@@ -287,10 +314,11 @@ app.post('/api/quote', async (req, res) => {
         <p>${notes || 'N/A'}</p>
       `,
     });
+    await sendAutoReply({ to: email, name }).catch(() => {});
     res.json({ success: true });
   } catch (err) {
     console.error('Failed to send quote email:', err);
-    res.status(500).json({ error: 'Failed to send request. Please try again later.' });
+    res.status(500).json({ error: 'Failed to send request. Please try later.' });
   }
 });
 
