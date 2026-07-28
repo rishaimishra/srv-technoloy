@@ -209,7 +209,7 @@ export const TechAndClientsSection: React.FC = () => {
 
         {/* SECTION 2: TECHNOLOGIES LOGO SHOWCASE */}
         <div>
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+          {/* <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
             {[
               { id: 'all', label: 'All Technologies' },
               { id: 'erp_crm', label: 'Syspro ERP & Salesforce' },
@@ -231,7 +231,7 @@ export const TechAndClientsSection: React.FC = () => {
                 {tab.label}
               </button>
             ))}
-          </div>
+          </div> */}
 
           <Carousel
             id="technologies-carousel"

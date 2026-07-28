@@ -66,7 +66,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   return (
     <>
       <SEO
-        title="Best Website Development Company in Siliguri & West Bengal"
+        title="SRV Technology - Leading Software Development Company in Siliguri, West Bengal"
         description="SRV Technology is the best website development company in West Bengal and Siliguri. We offer custom software, Syspro ERP, Salesforce CRM, mobile apps, e-commerce & AI/ML development. Web development agency serving Darjeeling & North Bengal since 2018."
         canonical="https://srvtechnology.com"
         keywords={['website development company West Bengal', 'web development agency Siliguri', 'best web developers Darjeeling', 'software company North Bengal', 'IT company Siliguri', 'web development Darjeeling']}
@@ -111,14 +111,14 @@ export const HomePage: React.FC<HomePageProps> = ({
           items={SERVICES_DATA}
           renderItem={(service) => {
             const serviceImages: Record<string, string> = {
-              'custom-software': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80',
-              'web-dev': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80',
-              'mobile-dev': 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80',
-              'erp-syspro': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80',
-              'salesforce': 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80',
-              'cybersecurity': 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80',
-              'ecommerce': 'https://images.unsplash.com/photo-1556742049-0a670f4a4591?auto=format&fit=crop&w=600&q=80',
-              'ai-ml': 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80',
+              'custom-software': 'src/assets/articles/custom-software.webp',
+              'web-dev': 'src/assets/articles/web-dev.webp',
+              'mobile-dev': 'src/assets/articles/mobile-dev.webp',
+              'erp-syspro': 'src/assets/articles/erp-syspro.webp',
+              'salesforce': 'src/assets/articles/salesforce.webp',
+              'cybersecurity': 'src/assets/articles/cybersecurity.webp',
+              'ecommerce': 'src/assets/articles/ecommerce.webp',
+              'ai-ml': 'src/assets/articles/ai-ml.webp',
             };
 
             return (

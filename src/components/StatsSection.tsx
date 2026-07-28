@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import spaceWallpaper from '../assets/images/space-wallpaper.jpg';
 
 export const StatsSection: React.FC = () => {
   const [activeRegion, setActiveRegion] = useState<'all' | 'americas' | 'asia' | 'europe'>('all');
@@ -70,7 +71,7 @@ export const StatsSection: React.FC = () => {
           </div>
 
           {/* Right Side: Stylized World Map & Badges */}
-          <div className="relative aspect-[1.5/1] rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-lg group">
+          <div className="relative aspect-[1.5/1] rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-lg group" style={{ backgroundImage: `url(${spaceWallpaper})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             {/* World Map SVG / Symbol Graphic */}
             <div className="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center">
               <span className="material-symbols-outlined text-[200px] sm:text-[300px] text-blue-600 animate-pulse">
@@ -84,7 +85,7 @@ export const StatsSection: React.FC = () => {
                   <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
                   LIVE SUPPORT AGENTS ONLINE
                 </span>
-                <span className="text-xs text-slate-500 font-caps font-bold">24/7 MONITORING</span>
+                <span className="text-xs text-white font-caps font-bold">24/7 MONITORING</span>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
