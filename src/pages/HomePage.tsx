@@ -140,6 +140,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                   <img
                     src={serviceImages[service.id] || 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80'}
                     alt={service.title}
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     referrerPolicy="no-referrer"
                   />
@@ -230,6 +231,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                   <img
                     src={study.image}
                     alt={study.title}
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     referrerPolicy="no-referrer"
                   />

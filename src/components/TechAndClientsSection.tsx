@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Cpu, Database, Smartphone, Cloud, Code, ShoppingBag, ShieldCheck, Award, Layers } from 'lucide-react';
 import { Carousel } from './Carousel';
 
-import bhutanechosImg from '../assets/partners/bhutanechos.jpeg';
-import bizspiceImg from '../assets/partners/bizspice.jpeg';
-import deeplogicImg from '../assets/partners/deeplogic.jpeg';
-import fccImg from '../assets/partners/fcc.jpeg';
-import jobdaddyImg from '../assets/partners/jobdaddy.png';
-import revenueVaultImg from '../assets/partners/revenue-vault.png';
-import scanbhutanImg from '../assets/partners/scanbhutan.jpeg';
-import successResourcesImg from '../assets/partners/success-resources.jpeg';
-import wardcImg from '../assets/partners/wardc.jpeg';
+import bhutanechosImg from '../assets/partners/bhutanechos.webp';
+import bizspiceImg from '../assets/partners/bizspice.webp';
+import deeplogicImg from '../assets/partners/deeplogic.webp';
+import fccImg from '../assets/partners/fcc.webp';
+import jobdaddyImg from '../assets/partners/jobdaddy.webp';
+import revenueVaultImg from '../assets/partners/revenue-vault.webp';
+import scanbhutanImg from '../assets/partners/scanbhutan.webp';
+import successResourcesImg from '../assets/partners/success-resources.webp';
+import wardcImg from '../assets/partners/wardc.webp';
 
 interface TechLogoItem {
   id: string;
@@ -175,6 +175,7 @@ export const TechAndClientsSection: React.FC = () => {
                   <img
                     src={client.logoSrc}
                     alt={`${client.name} logo`}
+                    loading="lazy"
                     className="w-full h-full object-contain"
                   />
                 </div>

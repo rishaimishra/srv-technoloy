@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
@@ -21,10 +21,10 @@ import { ContactPage } from './pages/ContactPage';
 import { BlogListPage } from './pages/BlogListPage';
 import { BlogDetailPage } from './pages/BlogDetailPage';
 
-// Admin Pages
-import { AdminLogin } from './pages/AdminLogin';
-import { AdminDashboard } from './pages/AdminDashboard';
-import { AdminBlogEditor } from './pages/AdminBlogEditor';
+// Admin Pages — code-split so JWT auth/editor code isn't in every visitor's bundle
+const AdminLogin = React.lazy(() => import('./pages/AdminLogin').then((m) => ({ default: m.AdminLogin })));
+const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard').then((m) => ({ default: m.AdminDashboard })));
+const AdminBlogEditor = React.lazy(() => import('./pages/AdminBlogEditor').then((m) => ({ default: m.AdminBlogEditor })));
 
 // Modals
 import { LocalBusinessSchema } from './components/LocalBusinessSchema';
@@ -88,12 +88,14 @@ function MainLayout() {
 
 function AdminRoutes() {
   return (
-    <Routes>
-      <Route path="/admin/login" element={<AdminLogin />} />
-      <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
-      <Route path="/admin/blog/new" element={<ProtectedRoute><AdminBlogEditor /></ProtectedRoute>} />
-      <Route path="/admin/blog/:id/edit" element={<ProtectedRoute><AdminBlogEditor /></ProtectedRoute>} />
-    </Routes>
+    <Suspense fallback={null}>
+      <Routes>
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+        <Route path="/admin/blog/new" element={<ProtectedRoute><AdminBlogEditor /></ProtectedRoute>} />
+        <Route path="/admin/blog/:id/edit" element={<ProtectedRoute><AdminBlogEditor /></ProtectedRoute>} />
+      </Routes>
+    </Suspense>
   );
 }
 

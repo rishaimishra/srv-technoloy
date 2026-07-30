@@ -22,6 +22,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
           <img
             src={caseStudy.image}
             alt={caseStudy.title}
+            loading="lazy"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />

@@ -43,6 +43,7 @@ export const BlogListPage: React.FC = () => {
                 <img
                   src={article.image}
                   alt={article.title}
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />

@@ -17,6 +17,7 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({ article, onClose }) 
           <img
             src={article.image}
             alt={article.title}
+            loading="lazy"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover"
           />

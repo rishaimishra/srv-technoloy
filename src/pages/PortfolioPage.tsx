@@ -79,6 +79,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
               <img
                 src={study.image}
                 alt={study.title}
+                loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 referrerPolicy="no-referrer"
               />

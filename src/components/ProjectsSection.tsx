@@ -66,6 +66,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectCaseSt
                 <img
                   src={study.image}
                   alt={study.title}
+                  loading="lazy"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />

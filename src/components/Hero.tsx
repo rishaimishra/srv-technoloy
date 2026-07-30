@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Zap, CheckCircle2, ShieldCheck, Cpu, Code, Layers } from 'lucide-react';
-import heroFluidPattern from '../assets/images/hero_fluid_pattern_1784809845809.jpg';
+import heroFluidPattern from '../assets/images/hero_fluid_pattern_1784809845809.webp';
 
 interface HeroProps {
   onRequestQuote: () => void;
