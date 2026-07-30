@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Home, Settings, Smartphone, Database, ShoppingCart, Cpu, Rocket, Users, BookOpen, Mail, X } from 'lucide-react';
+import { Home, Settings, Smartphone, Database, ShoppingCart, Cpu, Rocket, Users, BookOpen, Newspaper, Mail, X } from 'lucide-react';
 import { Logo } from './Logo';
 
 interface SideDrawerProps {
@@ -98,6 +98,13 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
           </button>
 
           <button
+            onClick={() => handleNav('/services/erp-salesforce')}
+            className="text-left text-slate-700 font-medium hover:text-blue-700 hover:bg-slate-50 p-3.5 rounded-xl flex items-center gap-3 transition-colors text-sm"
+          >
+            <Database className="w-4 h-4 text-blue-600" /> ERP & CRM
+          </button>
+
+          <button
             onClick={() => handleNav('/portfolio')}
             className="text-left text-slate-700 font-medium hover:text-blue-700 hover:bg-slate-50 p-3.5 rounded-xl flex items-center gap-3 transition-colors text-sm"
           >
@@ -109,6 +116,13 @@ export const SideDrawer: React.FC<SideDrawerProps> = ({
             className="text-left text-slate-700 font-medium hover:text-blue-700 hover:bg-slate-50 p-3.5 rounded-xl flex items-center gap-3 transition-colors text-sm"
           >
             <Users className="w-4 h-4 text-blue-600" /> About Us
+          </button>
+
+          <button
+            onClick={() => handleNav('/blog')}
+            className="text-left text-slate-700 font-medium hover:text-blue-700 hover:bg-slate-50 p-3.5 rounded-xl flex items-center gap-3 transition-colors text-sm"
+          >
+            <Newspaper className="w-4 h-4 text-blue-600" /> Blog
           </button>
 
           <button
