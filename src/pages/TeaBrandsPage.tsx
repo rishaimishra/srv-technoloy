@@ -39,9 +39,9 @@ export const TeaBrandsPage: React.FC = () => {
     <div className="min-h-screen bg-white text-slate-900 font-sans">
       <SEO
         title="Be Found by Tea Buyers Online"
-        description="A professional export-ready website and buyer-search ad campaigns for tea gardens, estates, D2C brands, and exporters in West Bengal — so wholesale and export buyers find you before a competitor."
+        description="Export-ready website and buyer-search ad campaigns for tea gardens, estates, D2C brands & exporters in West Bengal — so wholesale and export buyers find you before a competitor."
         canonical="https://srvtechnology.com/tea-brands"
-        keywords={['tea export website', 'tea garden website design', 'wholesale tea buyer marketing', 'tea estate branding', 'Darjeeling tea exporters']}
+        keywords={['tea export website design', 'tea business website development West Bengal', 'wholesale tea supplier marketing', 'tea garden website design', 'tea estate branding', 'Darjeeling tea exporters website']}
       />
       <LocalBusinessSchema />
 
