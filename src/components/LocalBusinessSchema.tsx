@@ -112,12 +112,6 @@ const schema = {
       },
     ],
   },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    ratingCount: '25',
-    bestRating: '5',
-  },
 };
 
 export const LocalBusinessSchema: React.FC = () => (
