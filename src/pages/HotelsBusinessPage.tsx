@@ -5,6 +5,7 @@ import { Logo } from '../components/Logo';
 import { CheckCircle2, TrendingDown, Clock, Globe2 } from 'lucide-react';
 import hotelHero from '../assets/landing/hotel-hero.webp';
 import hotelInterior from '../assets/landing/hotel-interior.webp';
+import { getLeadSource } from '../lib/leadSource';
 
 const WHATSAPP_URL = 'https://wa.me/917001769472';
 
@@ -27,6 +28,7 @@ export const HotelsBusinessPage: React.FC = () => {
           phone: data.get('phone'),
           city: data.get('city'),
           detail: data.get('detail'),
+          ...getLeadSource(),
         }),
       });
       if (!res.ok) throw new Error('Request failed');

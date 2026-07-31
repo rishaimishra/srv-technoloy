@@ -5,6 +5,7 @@ import { Logo } from '../components/Logo';
 import { CheckCircle2, Search, Users2, Award } from 'lucide-react';
 import teaHero from '../assets/landing/tea-hero.webp';
 import teaPicking from '../assets/landing/tea-picking.webp';
+import { getLeadSource } from '../lib/leadSource';
 
 const WHATSAPP_URL = 'https://wa.me/917001769472';
 
@@ -27,6 +28,7 @@ export const TeaBrandsPage: React.FC = () => {
           phone: data.get('phone'),
           city: data.get('city'),
           detail: data.get('detail'),
+          ...getLeadSource(),
         }),
       });
       if (!res.ok) throw new Error('Request failed');

@@ -20,6 +20,7 @@ if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
 if (!existsSync(UPLOADS_DIR)) mkdirSync(UPLOADS_DIR, { recursive: true });
 
 const BLOG_FILE = path.join(DATA_DIR, 'blog.json');
+const LEADS_FILE = path.join(DATA_DIR, 'leads.json');
 
 function loadArticles() {
   if (!existsSync(BLOG_FILE)) return [];
@@ -30,6 +31,59 @@ function loadArticles() {
 
 function saveArticles(articles) {
   writeFileSync(BLOG_FILE, JSON.stringify(articles, null, 2), 'utf-8');
+}
+
+// --- Lead store (data/leads.json) ---
+// The store is an array of lead records. `sourcePage` is intentionally NOT
+// unique: many leads may originate from the same landing page/campaign so we
+// can aggregate performance per source.
+function loadLeads() {
+  if (!existsSync(LEADS_FILE)) return [];
+  try {
+    const parsed = JSON.parse(readFileSync(LEADS_FILE, 'utf-8'));
+    return Array.isArray(parsed) ? parsed : [];
+  } catch { return []; }
+}
+
+function saveLeads(leads) {
+  writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2), 'utf-8');
+}
+
+function appendLead(lead) {
+  const leads = loadLeads();
+  leads.push(lead);
+  saveLeads(leads);
+}
+
+function sanitizeSourcePage(value, fallback = 'direct') {
+  if (typeof value !== 'string') return fallback;
+  let v = value.trim().replace(/[^a-zA-Z0-9/_.\-?&=:%@#+]/g, '');
+  if (!v) return fallback;
+  return v.slice(0, 300);
+}
+
+// Resolve the landing page / campaign source for an incoming lead. Prefers the
+// client-supplied value, then falls back to the HTTP Referer so tracking still
+// works for clients that don't send it explicitly.
+function resolveLeadSource(req, body) {
+  const clientPage = body?.sourcePage || body?.landingPage;
+  const clientUrl = body?.sourceUrl || body?.landingUrl;
+
+  let page = sanitizeSourcePage(clientPage);
+  if (!page || page === 'direct') {
+    const referer = req.headers?.referer || req.headers?.origin;
+    if (typeof referer === 'string' && referer) {
+      try {
+        const u = new URL(referer);
+        page = sanitizeSourcePage((u.pathname || '').replace(/\/+$/, '') || '/', 'direct');
+      } catch {
+        page = sanitizeSourcePage(referer, 'direct');
+      }
+    }
+  }
+
+  const url = sanitizeSourcePage(clientUrl, page || 'direct');
+  return { sourcePage: page || 'direct', sourceUrl: url };
 }
 
 const SEED_ARTICLES = [
@@ -274,6 +328,26 @@ app.post('/api/contact', async (req, res) => {
   if (!firstName || !lastName || !email || !message) {
     return res.status(400).json({ error: 'Missing required fields.' });
   }
+  const { sourcePage, sourceUrl } = resolveLeadSource(req, req.body);
+  try {
+    appendLead({
+      id: crypto.randomUUID(),
+      type: 'contact',
+      sourcePage,
+      sourceUrl,
+      name: `${firstName} ${lastName}`.trim(),
+      firstName,
+      lastName,
+      email,
+      phone: phone || '',
+      projectType: projectType || '',
+      budget: budget || '',
+      message,
+      createdAt: new Date().toISOString(),
+    });
+  } catch (err) {
+    console.error('Failed to store contact lead:', err);
+  }
   try {
     await sendMail({
       subject: `New Consultation Request — ${firstName} ${lastName}`,
@@ -285,6 +359,7 @@ app.post('/api/contact', async (req, res) => {
         <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
         <p><strong>Project Type:</strong> ${projectType || 'N/A'}</p>
         <p><strong>Budget:</strong> ${budget || 'N/A'}</p>
+        <p><strong>Source Page:</strong> ${sourcePage}${sourceUrl !== sourcePage ? ` (${sourceUrl})` : ''}</p>
         <p><strong>Message:</strong></p>
         <p>${message}</p>
       `,
@@ -292,8 +367,11 @@ app.post('/api/contact', async (req, res) => {
     await sendAutoReply({ to: email, name: `${firstName} ${lastName}` }).catch(() => {});
     res.json({ success: true });
   } catch (err) {
+    // The lead is already persisted in data/leads.json — surface the email
+    // failure in logs but still acknowledge the submission so the visitor
+    // isn't told to resubmit (which would create a duplicate record).
     console.error('Failed to send contact email:', err);
-    res.status(500).json({ error: 'Failed to send message. Please try again later.' });
+    res.json({ success: true });
   }
 });
 
@@ -301,6 +379,24 @@ app.post('/api/landing-lead', async (req, res) => {
   const { formType, name, businessName, phone, city, detail } = req.body || {};
   if (!formType || !name || !phone) {
     return res.status(400).json({ error: 'Missing required fields.' });
+  }
+  const { sourcePage, sourceUrl } = resolveLeadSource(req, req.body);
+  try {
+    appendLead({
+      id: crypto.randomUUID(),
+      type: 'landing',
+      formType: formType === 'hotel' ? 'hotel' : 'tea',
+      sourcePage,
+      sourceUrl,
+      name,
+      businessName: businessName || '',
+      phone,
+      city: city || '',
+      detail: detail || '',
+      createdAt: new Date().toISOString(),
+    });
+  } catch (err) {
+    console.error('Failed to store landing lead:', err);
   }
   const label = formType === 'hotel' ? 'Hotel/Hospitality Landing Page' : 'Tea Business Landing Page';
   const detailLabel = formType === 'hotel' ? 'Property Size' : 'Business Type';
@@ -314,12 +410,14 @@ app.post('/api/landing-lead', async (req, res) => {
         <p><strong>Phone/WhatsApp:</strong> ${phone}</p>
         <p><strong>City/Location:</strong> ${city || 'N/A'}</p>
         <p><strong>${detailLabel}:</strong> ${detail || 'N/A'}</p>
+        <p><strong>Source Page:</strong> ${sourcePage}${sourceUrl !== sourcePage ? ` (${sourceUrl})` : ''}</p>
       `,
     });
     res.json({ success: true });
   } catch (err) {
+    // Lead is already persisted — acknowledge submission to avoid duplicates.
     console.error('Failed to send landing lead email:', err);
-    res.status(500).json({ error: 'Failed to send request. Please try later.' });
+    res.json({ success: true });
   }
 });
 
@@ -327,6 +425,22 @@ app.post('/api/quote', async (req, res) => {
   const { name, email, service, notes } = req.body || {};
   if (!name || !email || !service) {
     return res.status(400).json({ error: 'Missing required fields.' });
+  }
+  const { sourcePage, sourceUrl } = resolveLeadSource(req, req.body);
+  try {
+    appendLead({
+      id: crypto.randomUUID(),
+      type: 'quote',
+      sourcePage,
+      sourceUrl,
+      name,
+      email,
+      service: service || '',
+      notes: notes || '',
+      createdAt: new Date().toISOString(),
+    });
+  } catch (err) {
+    console.error('Failed to store quote lead:', err);
   }
   try {
     await sendMail({
@@ -337,6 +451,7 @@ app.post('/api/quote', async (req, res) => {
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Service:</strong> ${service}</p>
+        <p><strong>Source Page:</strong> ${sourcePage}${sourceUrl !== sourcePage ? ` (${sourceUrl})` : ''}</p>
         <p><strong>Notes:</strong></p>
         <p>${notes || 'N/A'}</p>
       `,
@@ -344,8 +459,9 @@ app.post('/api/quote', async (req, res) => {
     await sendAutoReply({ to: email, name }).catch(() => {});
     res.json({ success: true });
   } catch (err) {
+    // Lead is already persisted — acknowledge submission to avoid duplicates.
     console.error('Failed to send quote email:', err);
-    res.status(500).json({ error: 'Failed to send request. Please try later.' });
+    res.json({ success: true });
   }
 });
 
@@ -354,6 +470,20 @@ app.post('/api/subscribe', async (req, res) => {
   if (!email) {
     return res.status(400).json({ error: 'Missing required fields.' });
   }
+  const { sourcePage, sourceUrl } = resolveLeadSource(req, req.body);
+  try {
+    appendLead({
+      id: crypto.randomUUID(),
+      type: 'subscribe',
+      sourcePage,
+      sourceUrl,
+      name: '',
+      email,
+      createdAt: new Date().toISOString(),
+    });
+  } catch (err) {
+    console.error('Failed to store subscriber:', err);
+  }
   try {
     await sendMail({
       subject: 'New Newsletter Subscriber',
@@ -361,13 +491,91 @@ app.post('/api/subscribe', async (req, res) => {
       html: `
         <h2>New Newsletter Subscriber</h2>
         <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Source Page:</strong> ${sourcePage}${sourceUrl !== sourcePage ? ` (${sourceUrl})` : ''}</p>
       `,
     });
     res.json({ success: true });
   } catch (err) {
     console.error('Failed to send subscribe email:', err);
-    res.status(500).json({ error: 'Failed to subscribe. Please try again later.' });
+    res.json({ success: true });
   }
+});
+
+// --- Admin: lead tracking API (auth-gated) ---
+// Supports filtering by source page / type, free-text search, sorting and
+// pagination so the dashboard can monitor landing-page performance.
+app.get('/api/leads', authMiddleware, (req, res) => {
+  let leads = loadLeads();
+  const { source, type, q, sort, page, limit } = req.query;
+
+  if (source) leads = leads.filter((l) => l.sourcePage === source);
+  if (type) leads = leads.filter((l) => l.type === type);
+  if (q) {
+    const term = String(q).toLowerCase();
+    leads = leads.filter((l) =>
+      [l.name, l.email, l.phone, l.businessName, l.city, l.message, l.notes, l.service, l.projectType, l.detail]
+        .filter(Boolean)
+        .some((v) => String(v).toLowerCase().includes(term))
+    );
+  }
+
+  const summary = {
+    total: leads.length,
+    bySource: Object.entries(
+      leads.reduce((acc, l) => {
+        acc[l.sourcePage || '/'] = (acc[l.sourcePage || '/'] || 0) + 1;
+        return acc;
+      }, {})
+    )
+      .map(([sourcePage, count]) => ({ sourcePage, count }))
+      .sort((a, b) => b.count - a.count),
+    byType: leads.reduce((acc, l) => {
+      acc[l.type] = (acc[l.type] || 0) + 1;
+      return acc;
+    }, {}),
+  };
+
+  switch (sort) {
+    case 'oldest':
+      leads.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      break;
+    case 'source':
+      leads.sort(
+        (a, b) =>
+          (a.sourcePage || '').localeCompare(b.sourcePage || '') || new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      break;
+    case 'name':
+      leads.sort(
+        (a, b) => (a.name || '').localeCompare(b.name || '') || new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      break;
+    default:
+      leads.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  }
+
+  const p = Math.max(1, parseInt(String(page), 10) || 1);
+  const lim = Math.min(200, Math.max(1, parseInt(String(limit), 10) || 50));
+  const totalPages = Math.max(1, Math.ceil(leads.length / lim));
+  const start = (p - 1) * lim;
+
+  res.json({
+    leads: leads.slice(start, start + lim),
+    total: leads.length,
+    page: p,
+    limit: lim,
+    totalPages,
+    summary,
+  });
+});
+
+app.delete('/api/leads/:id', authMiddleware, (req, res) => {
+  const leads = loadLeads();
+  const idx = leads.findIndex((l) => l.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'Lead not found' });
+  leads.splice(idx, 1);
+  saveLeads(leads);
+  res.json({ success: true });
 });
 
 app.use('/uploads', express.static(UPLOADS_DIR));

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone } from 'lucide-react';
 import logoSrc from '../assets/images/srv-tech-board-footer.png';
+import { getLeadSource } from '../lib/leadSource';
 
 export const Footer: React.FC = () => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -18,7 +19,7 @@ export const Footer: React.FC = () => {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: newsletterEmail }),
+        body: JSON.stringify({ email: newsletterEmail, ...getLeadSource() }),
       });
       if (!res.ok) throw new Error('Request failed');
       setNewsletterSubscribed(true);

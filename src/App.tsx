@@ -116,8 +116,9 @@ function LandingRoutes() {
 
 function AppShell() {
   const { pathname } = useLocation();
-  const isAdmin = pathname.startsWith('/admin');
-  const isLanding = pathname === '/hotels-business' || pathname === '/tea-brands';
+  const path = pathname.replace(/\/+$/, '') || '/';
+  const isAdmin = path.startsWith('/admin');
+  const isLanding = path === '/hotels-business' || path === '/tea-brands';
 
   if (isAdmin) return <AdminRoutes />;
   if (isLanding) return <LandingRoutes />;

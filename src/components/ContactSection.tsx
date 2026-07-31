@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getLeadSource } from '../lib/leadSource';
 
 interface ContactSectionProps {
   prefilledSubject?: string;
@@ -27,7 +28,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledSubject
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, ...getLeadSource() }),
       });
       if (!res.ok) throw new Error('Request failed');
       setIsSubmitted(true);

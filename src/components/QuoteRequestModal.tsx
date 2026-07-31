@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getLeadSource } from '../lib/leadSource';
 
 interface QuoteRequestModalProps {
   isOpen: boolean;
@@ -29,7 +30,7 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
       const res = await fetch('/api/quote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, service, notes }),
+        body: JSON.stringify({ name, email, service, notes, ...getLeadSource() }),
       });
       if (!res.ok) throw new Error('Request failed');
       setIsSubmitted(true);

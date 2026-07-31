@@ -6,3 +6,5 @@ coverage/
 *.log
 .env*
 !.env.example
+# Captured lead records contain prospect PII — never commit them to git
+data/leads.json
