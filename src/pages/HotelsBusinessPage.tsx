@@ -93,7 +93,7 @@ export const HotelsBusinessPage: React.FC = () => {
           <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
             <img
               src={hotelHero}
-              alt="Independent hotel nestled in the hills of West Bengal"
+              alt="Cosy hotel lobby with a panoramic mountain view"
               className="w-full h-full object-cover"
             />
           </div>
