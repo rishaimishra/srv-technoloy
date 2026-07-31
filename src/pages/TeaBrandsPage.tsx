@@ -3,6 +3,8 @@ import { SEO } from '../components/SEO';
 import { LocalBusinessSchema } from '../components/LocalBusinessSchema';
 import { Logo } from '../components/Logo';
 import { CheckCircle2, Search, Users2, Award } from 'lucide-react';
+import teaHero from '../assets/landing/tea-hero.webp';
+import teaPicking from '../assets/landing/tea-picking.webp';
 
 const WHATSAPP_URL = 'https://wa.me/917001769472';
 
@@ -59,36 +61,45 @@ export const TeaBrandsPage: React.FC = () => {
       </nav>
 
       {/* HERO */}
-      <header className="px-6 md:px-12 max-w-[1120px] mx-auto pt-16 pb-14">
-        <span className="inline-flex items-center gap-2 text-blue-800 font-caps text-xs font-bold mb-6 tracking-widest bg-blue-50/90 border border-blue-200/80 px-4 py-1.5 rounded-full uppercase">
-          <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-          For Tea Gardens, Brands, Packers &amp; Exporters in West Bengal
-        </span>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6 leading-[1.1] tracking-tight max-w-3xl">
-          Buyers are already searching for suppliers like you.{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Can they find you?</span>
-        </h1>
-        <p className="text-base sm:text-lg text-slate-600 mb-10 max-w-2xl leading-relaxed">
-          Export houses, retail chains, and wholesale buyers search online before they ever pick up the phone.
-          If your business doesn't show up, they contact a competitor instead — regardless of whose tea is better.
-        </p>
-        <div className="flex flex-wrap gap-4 mb-10">
-          <a
-            href="#contact"
-            className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-full font-bold font-caps text-xs tracking-wider transition-all active:scale-95 shadow-md shadow-blue-500/20"
-          >
-            REQUEST A FREE CONSULTATION
-          </a>
-          <a
-            href={WHATSAPP_URL}
-            className="border border-slate-300 bg-white text-slate-800 px-8 py-4 rounded-full font-bold font-caps text-xs tracking-wider hover:bg-slate-50 hover:border-blue-600 transition-all active:scale-95 shadow-sm"
-          >
-            💬 CHAT ON WHATSAPP
-          </a>
+      <header className="px-6 md:px-12 max-w-[1120px] mx-auto pt-16 pb-14 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+        <div>
+          <span className="inline-flex items-center gap-2 text-blue-800 font-caps text-xs font-bold mb-6 tracking-widest bg-blue-50/90 border border-blue-200/80 px-4 py-1.5 rounded-full uppercase">
+            <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+            For Tea Gardens, Brands, Packers &amp; Exporters in West Bengal
+          </span>
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-6 leading-[1.1] tracking-tight">
+            Buyers are already searching for suppliers like you.{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Can they find you?</span>
+          </h1>
+          <p className="text-base sm:text-lg text-slate-600 mb-10 max-w-2xl leading-relaxed">
+            Export houses, retail chains, and wholesale buyers search online before they ever pick up the phone.
+            If your business doesn't show up, they contact a competitor instead — regardless of whose tea is better.
+          </p>
+          <div className="flex flex-wrap gap-4 mb-10">
+            <a
+              href="#contact"
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-full font-bold font-caps text-xs tracking-wider transition-all active:scale-95 shadow-md shadow-blue-500/20"
+            >
+              REQUEST A FREE CONSULTATION
+            </a>
+            <a
+              href={WHATSAPP_URL}
+              className="border border-slate-300 bg-white text-slate-800 px-8 py-4 rounded-full font-bold font-caps text-xs tracking-wider hover:bg-slate-50 hover:border-blue-600 transition-all active:scale-95 shadow-sm"
+            >
+              💬 CHAT ON WHATSAPP
+            </a>
+          </div>
+          <div className="flex items-center gap-4 pt-6 border-t border-slate-200 text-xs font-caps font-bold text-slate-500 tracking-wide flex-wrap">
+            <span>SERVING GARDENS &amp; BRANDS ACROSS</span>
+            <span className="text-blue-700">DARJEELING</span> · <span className="text-blue-700">DOOARS</span> · <span className="text-blue-700">TERAI</span> · <span className="text-blue-700">JALPAIGURI</span> · <span className="text-blue-700">KOLKATA TRADE</span>
+          </div>
         </div>
-        <div className="flex items-center gap-4 pt-6 border-t border-slate-200 text-xs font-caps font-bold text-slate-500 tracking-wide flex-wrap">
-          <span>SERVING GARDENS &amp; BRANDS ACROSS</span>
-          <span className="text-blue-700">DARJEELING</span> · <span className="text-blue-700">DOOARS</span> · <span className="text-blue-700">TERAI</span> · <span className="text-blue-700">JALPAIGURI</span> · <span className="text-blue-700">KOLKATA TRADE</span>
+        <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
+          <img
+            src={teaHero}
+            alt="Misty tea plantation hills in Darjeeling, West Bengal"
+            className="w-full h-full object-cover"
+          />
         </div>
       </header>
 
@@ -166,13 +177,25 @@ export const TeaBrandsPage: React.FC = () => {
       </section>
 
       {/* SEGMENTS */}
-      <section className="bg-slate-50 py-20 px-6 md:px-12 text-center">
-        <div className="max-w-[900px] mx-auto">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4">Built for every part of the tea trade</h2>
-          <p className="text-slate-600 max-w-xl mx-auto mb-10">
-            Whether you sell direct-to-consumer or trade in bulk, the way buyers find you online is different —
-            our approach adapts to which one you are.
-          </p>
+      <section className="bg-slate-50 py-20 px-6 md:px-12">
+        <div className="max-w-[1120px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-14">
+            <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3] order-2 lg:order-1">
+              <img
+                src={teaPicking}
+                alt="Hand-picking tea leaves at a Darjeeling tea garden"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="order-1 lg:order-2">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4">Built for every part of the tea trade</h2>
+              <p className="text-slate-600 max-w-xl">
+                Whether you sell direct-to-consumer or trade in bulk, the way buyers find you online is different —
+                our approach adapts to which one you are.
+              </p>
+            </div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
             <div className="bg-white border border-slate-200 rounded-2xl p-7 shadow-sm">
               <h3 className="text-base font-bold text-slate-900 mb-2">Tea Gardens &amp; Estates</h3>

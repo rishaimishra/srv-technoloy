@@ -3,6 +3,8 @@ import { SEO } from '../components/SEO';
 import { LocalBusinessSchema } from '../components/LocalBusinessSchema';
 import { Logo } from '../components/Logo';
 import { CheckCircle2, TrendingDown, Clock, Globe2 } from 'lucide-react';
+import hotelHero from '../assets/landing/hotel-hero.webp';
+import hotelInterior from '../assets/landing/hotel-interior.webp';
 
 const WHATSAPP_URL = 'https://wa.me/917001769472';
 
@@ -60,30 +62,41 @@ export const HotelsBusinessPage: React.FC = () => {
 
       {/* HERO */}
       <header className="px-6 md:px-12 max-w-[1120px] mx-auto pt-16 pb-14">
-        <span className="inline-flex items-center gap-2 text-blue-800 font-caps text-xs font-bold mb-6 tracking-widest bg-blue-50/90 border border-blue-200/80 px-4 py-1.5 rounded-full uppercase">
-          <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-          For Independent Hotels, Resorts &amp; Homestays in West Bengal
-        </span>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6 leading-[1.1] tracking-tight max-w-3xl">
-          Stop handing <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">20% of every booking</span> to OTAs.
-        </h1>
-        <p className="text-base sm:text-lg text-slate-600 mb-10 max-w-2xl leading-relaxed">
-          We build a direct-booking website and run targeted ads that bring guests straight to you —
-          not to a platform that takes a cut of every stay you host.
-        </p>
-        <div className="flex flex-wrap gap-4 mb-14">
-          <a
-            href="#contact"
-            className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-full font-bold font-caps text-xs tracking-wider transition-all active:scale-95 shadow-md shadow-blue-500/20"
-          >
-            GET A FREE WEBSITE &amp; MARKETING REVIEW
-          </a>
-          <a
-            href={WHATSAPP_URL}
-            className="border border-slate-300 bg-white text-slate-800 px-8 py-4 rounded-full font-bold font-caps text-xs tracking-wider hover:bg-slate-50 hover:border-blue-600 transition-all active:scale-95 shadow-sm"
-          >
-            💬 CHAT ON WHATSAPP
-          </a>
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center mb-10">
+          <div>
+            <span className="inline-flex items-center gap-2 text-blue-800 font-caps text-xs font-bold mb-6 tracking-widest bg-blue-50/90 border border-blue-200/80 px-4 py-1.5 rounded-full uppercase">
+              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+              For Independent Hotels, Resorts &amp; Homestays in West Bengal
+            </span>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-6 leading-[1.1] tracking-tight">
+              Stop handing <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">20% of every booking</span> to OTAs.
+            </h1>
+            <p className="text-base sm:text-lg text-slate-600 mb-10 max-w-2xl leading-relaxed">
+              We build a direct-booking website and run targeted ads that bring guests straight to you —
+              not to a platform that takes a cut of every stay you host.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="#contact"
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-full font-bold font-caps text-xs tracking-wider transition-all active:scale-95 shadow-md shadow-blue-500/20"
+              >
+                GET A FREE WEBSITE &amp; MARKETING REVIEW
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                className="border border-slate-300 bg-white text-slate-800 px-8 py-4 rounded-full font-bold font-caps text-xs tracking-wider hover:bg-slate-50 hover:border-blue-600 transition-all active:scale-95 shadow-sm"
+              >
+                💬 CHAT ON WHATSAPP
+              </a>
+            </div>
+          </div>
+          <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
+            <img
+              src={hotelHero}
+              alt="Independent hotel nestled in the hills of West Bengal"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-slate-200">
           <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
@@ -169,14 +182,26 @@ export const HotelsBusinessPage: React.FC = () => {
       </section>
 
       {/* TRUST */}
-      <section className="bg-slate-50 py-20 px-6 md:px-12 text-center">
-        <div className="max-w-[900px] mx-auto">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4">Built specifically for hotels, resorts &amp; homestays</h2>
-          <p className="text-slate-600 max-w-xl mx-auto mb-10">
-            We don't spread ourselves across every industry. Hospitality, tea, and real estate are the only three
-            sectors we work with — so our process is built around how travellers actually search and book.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-slate-200 text-left">
+      <section className="bg-slate-50 py-20 px-6 md:px-12">
+        <div className="max-w-[1120px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-14">
+            <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3] order-2 lg:order-1">
+              <img
+                src={hotelInterior}
+                alt="Cosy homestay interior overlooking the hills"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="order-1 lg:order-2">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4">Built specifically for hotels, resorts &amp; homestays</h2>
+              <p className="text-slate-600 max-w-xl">
+                We don't spread ourselves across every industry. Hospitality, tea, and real estate are the only three
+                sectors we work with — so our process is built around how travellers actually search and book.
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-slate-200">
             <p className="text-sm text-slate-600"><span className="block text-blue-600 font-bold font-caps text-xs tracking-widest mb-2">I.</span>Dedicated to hospitality — not a generalist agency juggling ten industries</p>
             <p className="text-sm text-slate-600"><span className="block text-blue-600 font-bold font-caps text-xs tracking-widest mb-2">II.</span>Response-time discipline built into every enquiry, day or night</p>
             <p className="text-sm text-slate-600"><span className="block text-blue-600 font-bold font-caps text-xs tracking-widest mb-2">III.</span>Transparent monthly reporting — you see exactly what your spend produces</p>

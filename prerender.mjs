@@ -57,11 +57,14 @@ async function prerender() {
   // reachable — the blog list/detail pages fetch it client-side, and without
   // it, admin-authored articles that aren't in the static JOURNAL_ARTICLES
   // fallback would prerender as empty.
+  // No `shell: true` here: `node` is a real executable, and wrapping it in a
+  // shell means `server.kill()` below only terminates the shell wrapper on
+  // Windows, leaving the actual server.js process orphaned and still holding
+  // the port for the next build.
   const server = spawn('node', ['server.js'], {
     cwd: __dirname,
     stdio: 'inherit',
     env: { ...process.env, PORT: String(PORT) },
-    shell: true,
   });
 
   try {
