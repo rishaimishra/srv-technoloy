@@ -297,6 +297,32 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+app.post('/api/landing-lead', async (req, res) => {
+  const { formType, name, businessName, phone, city, detail } = req.body || {};
+  if (!formType || !name || !phone) {
+    return res.status(400).json({ error: 'Missing required fields.' });
+  }
+  const label = formType === 'hotel' ? 'Hotel/Hospitality Landing Page' : 'Tea Business Landing Page';
+  const detailLabel = formType === 'hotel' ? 'Property Size' : 'Business Type';
+  try {
+    await sendMail({
+      subject: `New Lead (${label}) — ${name}`,
+      html: `
+        <h2>New Lead — ${label}</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Business/Property Name:</strong> ${businessName || 'N/A'}</p>
+        <p><strong>Phone/WhatsApp:</strong> ${phone}</p>
+        <p><strong>City/Location:</strong> ${city || 'N/A'}</p>
+        <p><strong>${detailLabel}:</strong> ${detail || 'N/A'}</p>
+      `,
+    });
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Failed to send landing lead email:', err);
+    res.status(500).json({ error: 'Failed to send request. Please try later.' });
+  }
+});
+
 app.post('/api/quote', async (req, res) => {
   const { name, email, service, notes } = req.body || {};
   if (!name || !email || !service) {

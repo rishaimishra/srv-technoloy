@@ -26,6 +26,10 @@ const AdminLogin = React.lazy(() => import('./pages/AdminLogin').then((m) => ({ 
 const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard').then((m) => ({ default: m.AdminDashboard })));
 const AdminBlogEditor = React.lazy(() => import('./pages/AdminBlogEditor').then((m) => ({ default: m.AdminBlogEditor })));
 
+// Ad-landing Pages — standalone, code-split, no site nav/footer (isolated conversion funnels)
+const HotelsBusinessPage = React.lazy(() => import('./pages/HotelsBusinessPage').then((m) => ({ default: m.HotelsBusinessPage })));
+const TeaBrandsPage = React.lazy(() => import('./pages/TeaBrandsPage').then((m) => ({ default: m.TeaBrandsPage })));
+
 // Modals
 import { LocalBusinessSchema } from './components/LocalBusinessSchema';
 import { CaseStudyModal } from './components/CaseStudyModal';
@@ -99,11 +103,24 @@ function AdminRoutes() {
   );
 }
 
+function LandingRoutes() {
+  return (
+    <Suspense fallback={null}>
+      <Routes>
+        <Route path="/hotels-business" element={<HotelsBusinessPage />} />
+        <Route path="/tea-brands" element={<TeaBrandsPage />} />
+      </Routes>
+    </Suspense>
+  );
+}
+
 function AppShell() {
   const { pathname } = useLocation();
   const isAdmin = pathname.startsWith('/admin');
+  const isLanding = pathname === '/hotels-business' || pathname === '/tea-brands';
 
   if (isAdmin) return <AdminRoutes />;
+  if (isLanding) return <LandingRoutes />;
   return <MainLayout />;
 }
 

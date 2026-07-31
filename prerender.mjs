@@ -25,6 +25,8 @@ const STATIC_ROUTES = [
   { path: '/insights', file: 'insights/index.html' },
   { path: '/contact', file: 'contact/index.html' },
   { path: '/blog', file: 'blog/index.html' },
+  { path: '/hotels-business', file: 'hotels-business/index.html' },
+  { path: '/tea-brands', file: 'tea-brands/index.html' },
 ];
 
 async function waitForServer(url, timeoutMs = 20000) {

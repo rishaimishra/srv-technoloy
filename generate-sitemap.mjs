@@ -20,6 +20,8 @@ const STATIC_PAGES = [
   { path: '/insights', priority: '0.7' },
   { path: '/contact', priority: '0.7' },
   { path: '/blog', priority: '0.9' },
+  { path: '/hotels-business', priority: '0.6' },
+  { path: '/tea-brands', priority: '0.6' },
 ];
 
 function loadArticles() {
