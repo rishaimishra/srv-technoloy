@@ -44,10 +44,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuditModal, onOpenCaseStud
           >
             D2C Services
           </button>
-          <button onClick={onOpenCaseStudies} className="text-[#414846] hover:text-[#01261f] transition-colors py-1 flex items-center gap-1 cursor-pointer">
+          {/* <button onClick={onOpenCaseStudies} className="text-[#414846] hover:text-[#01261f] transition-colors py-1 flex items-center gap-1 cursor-pointer">
             Brand Studies
             <span className="text-[10px] bg-[#ffca98] text-[#7a532a] font-bold px-1.5 py-0.5 rounded">3 NEW</span>
-          </button>
+          </button> */}
           <button
             onClick={() => scrollToSection('regions')}
             className={`transition-colors py-1 cursor-pointer ${
