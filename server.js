@@ -376,7 +376,7 @@ app.post('/api/contact', async (req, res) => {
 });
 
 app.post('/api/landing-lead', async (req, res) => {
-  const { formType, name, businessName, phone, city, detail } = req.body || {};
+  const { formType, name, businessName, phone, city, detail, note } = req.body || {};
   if (!formType || !name || !phone) {
     return res.status(400).json({ error: 'Missing required fields.' });
   }
@@ -393,6 +393,7 @@ app.post('/api/landing-lead', async (req, res) => {
       phone,
       city: city || '',
       detail: detail || '',
+      note: note || '',
       createdAt: new Date().toISOString(),
     });
   } catch (err) {
@@ -410,6 +411,7 @@ app.post('/api/landing-lead', async (req, res) => {
         <p><strong>Phone/WhatsApp:</strong> ${phone}</p>
         <p><strong>City/Location:</strong> ${city || 'N/A'}</p>
         <p><strong>${detailLabel}:</strong> ${detail || 'N/A'}</p>
+        ${note ? `<p><strong>Note:</strong> ${note}</p>` : ''}
         <p><strong>Source Page:</strong> ${sourcePage}${sourceUrl !== sourcePage ? ` (${sourceUrl})` : ''}</p>
       `,
     });
