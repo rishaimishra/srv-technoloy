@@ -8,7 +8,7 @@ export const RegionSpecialization: React.FC = () => {
   const selectedRegion = REGIONS_DATA.find((r) => r.id === selectedRegionId) || REGIONS_DATA[0];
 
   return (
-    <section className="relative py-28 px-4 md:px-10 bg-slate-900 text-white overflow-hidden" id="regions">
+    <section className="relative py-28 px-4 md:px-10 bg-[#01261f] text-white overflow-hidden" id="regions">
       <div className="absolute inset-0 opacity-20 z-0">
         <img
           src={teaLeafMacroImg}
@@ -20,13 +20,13 @@ export const RegionSpecialization: React.FC = () => {
 
       <div className="relative z-10 max-w-[1280px] mx-auto text-center max-w-4xl space-y-8">
         <div className="space-y-4">
-          <span className="text-blue-300 font-semibold text-xs tracking-[0.2em] uppercase bg-white/10 px-4 py-1.5 rounded-full border border-white/20">
+          <span className="text-[#ffdcbd] font-semibold text-xs tracking-[0.2em] uppercase bg-white/10 px-4 py-1.5 rounded-full border border-white/20">
             Specialized for Specialty Tea Labels
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
             Built exclusively for D2C Tea Brands &amp; Artisanal Tea Retailers.
           </h2>
-          <p className="text-base sm:text-lg opacity-90 max-w-2xl mx-auto leading-relaxed text-slate-200">
+          <p className="text-base sm:text-lg opacity-90 max-w-2xl mx-auto leading-relaxed text-[#f0eee9]">
             We aren't a generic web agency. Headquartered in Siliguri with deep tea heritage links across
             Darjeeling, Dooars, and Assam, we understand consumer tea buying behavior, flavor profiling, and
             global D2C logistics.
@@ -40,8 +40,8 @@ export const RegionSpecialization: React.FC = () => {
               <button
                 key={region.id}
                 onClick={() => setSelectedRegionId(region.id)}
-                className={`p-4 rounded-xl border transition-all backdrop-blur-sm text-center flex flex-col items-center justify-center gap-1 ${
-                  isSelected ? 'bg-blue-600 border-blue-400 text-white shadow-xl scale-[1.03]' : 'bg-white/10 border-white/20 text-white/90 hover:bg-white/20 hover:border-white/40'
+                className={`p-4 rounded-lg border transition-all cursor-pointer backdrop-blur-sm text-center flex flex-col items-center justify-center gap-1 ${
+                  isSelected ? 'bg-[#7d562d] border-[#ffdcbd] text-white shadow-xl scale-[1.03]' : 'bg-white/10 border-white/20 text-white/90 hover:bg-white/20 hover:border-white/40'
                 }`}
               >
                 <span className="font-bold text-base sm:text-lg tracking-wide">{region.name}</span>
@@ -58,17 +58,17 @@ export const RegionSpecialization: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/15 pb-4 gap-4">
             <div>
               <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-blue-300" />
+                <MapPin className="w-5 h-5 text-[#ffdcbd]" />
                 <h3 className="text-2xl font-bold text-white">{selectedRegion.name}</h3>
               </div>
-              <p className="text-xs text-blue-300 mt-1 font-semibold flex items-center gap-1">
+              <p className="text-xs text-[#ffdcbd] mt-1 font-semibold flex items-center gap-1">
                 <Sparkles className="w-3.5 h-3.5" />
                 {selectedRegion.d2cGrowthRate}
               </p>
             </div>
             <div className="flex items-center gap-2 bg-black/20 px-4 py-2 rounded-lg border border-white/10">
-              <Mountain className="w-4 h-4 text-slate-300" />
-              <span className="text-xs text-slate-300 font-mono">{selectedRegion.elevation}</span>
+              <Mountain className="w-4 h-4 text-[#aacec3]" />
+              <span className="text-xs text-[#aacec3] font-mono">{selectedRegion.elevation}</span>
             </div>
           </div>
 
@@ -76,11 +76,11 @@ export const RegionSpecialization: React.FC = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
             <div className="space-y-2 bg-black/20 p-4 rounded-xl border border-white/10">
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-300 block">Target Tea Brand Segments</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#ffdcbd] block">Target Tea Brand Segments</span>
               <ul className="space-y-1 text-xs text-white/90">
                 {selectedRegion.keyBrands.map((b, idx) => (
                   <li key={idx} className="flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5 text-blue-300" />
+                    <Check className="w-3.5 h-3.5 text-[#aacec3]" />
                     {b}
                   </li>
                 ))}
@@ -88,11 +88,11 @@ export const RegionSpecialization: React.FC = () => {
             </div>
 
             <div className="space-y-2 bg-black/20 p-4 rounded-xl border border-white/10">
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-300 block">Hero Products &amp; Collections</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#ffdcbd] block">Hero Products &amp; Collections</span>
               <ul className="space-y-1 text-xs text-white/90">
                 {selectedRegion.flushTypes.map((f, idx) => (
                   <li key={idx} className="flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5 text-blue-300" />
+                    <Check className="w-3.5 h-3.5 text-[#aacec3]" />
                     {f}
                   </li>
                 ))}
@@ -100,13 +100,13 @@ export const RegionSpecialization: React.FC = () => {
             </div>
 
             <div className="space-y-2 bg-black/20 p-4 rounded-xl border border-white/10 sm:col-span-2 lg:col-span-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-300 block flex items-center gap-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#ffdcbd] block flex items-center gap-1">
                 <Globe className="w-3.5 h-3.5" />
                 Direct Export Destinations
               </span>
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {selectedRegion.exportDestinations.map((country, idx) => (
-                  <span key={idx} className="bg-blue-600/80 text-white px-2.5 py-1 rounded text-[11px] font-semibold border border-blue-400/30">
+                  <span key={idx} className="bg-[#7d562d]/80 text-[#ffdcbd] px-2.5 py-1 rounded text-[11px] font-semibold border border-[#ffdcbd]/30">
                     {country}
                   </span>
                 ))}

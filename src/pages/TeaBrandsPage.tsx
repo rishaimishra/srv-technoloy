@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { SEO } from '../components/SEO';
 import { LocalBusinessSchema } from '../components/LocalBusinessSchema';
+import styles from './TeaBrandsPage.module.css';
 import { Navbar } from './tea-landing/Navbar';
 import { Hero } from './tea-landing/Hero';
 import { MarketReality } from './tea-landing/MarketReality';
@@ -45,7 +47,12 @@ export const TeaBrandsPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans">
+    <div className={`min-h-screen bg-white text-[#111827] font-sans selection:bg-[#c5eadf] selection:text-[#00201a] ${styles.page}`}>
+      <Helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+      </Helmet>
       <SEO
         title="Stop Losing Tea Brand Margin to Marketplace Fees"
         description="D2C Shopify storefronts, Meta & Google ad campaigns, and WhatsApp replenishment automation for specialty tea brands in West Bengal moving off Amazon & Flipkart."

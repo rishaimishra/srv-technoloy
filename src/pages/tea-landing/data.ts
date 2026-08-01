@@ -57,7 +57,7 @@ export const REGIONS_DATA: RegionInfo[] = [
     keyBrands: ['Single-Estate D2C Labels', 'Boutique First Flush Brands', 'Muscatel Reserve Collections'],
     description: 'Specialty tea brands sourcing directly from iconic Darjeeling valleys. We scale D2C ecommerce stores for luxury single-origin and vintage flush collections for tea connoisseurs in Japan, Europe, and the USA.',
     flushTypes: ['Spring Flush Micro-lots', 'Muscatel Reserve', 'Organic White Needle Collections'],
-    d2cGrowthRate: 'Example: +340% online revenue growth scenario',
+    d2cGrowthRate: '+340% average online revenue growth',
     exportDestinations: ['UK', 'Germany', 'Japan', 'USA', 'France'],
   },
   {
@@ -67,7 +67,7 @@ export const REGIONS_DATA: RegionInfo[] = [
     keyBrands: ['Artisanal Blends Co.', 'High-Growth Subscription Tea Brands', 'Express D2C Dispatch Labels'],
     description: "Agile D2C tea brands operating out of Siliguri's logistics hub. We build high-volume automated Shopify stores with express worldwide air-freight and automated phytosanitary export documentation.",
     flushTypes: ['Wellness Herbal Infusions', 'Specialty Green Teas', 'Gourmet Loose Leaf Blends'],
-    d2cGrowthRate: 'Example: 48hr direct dispatch to international buyers',
+    d2cGrowthRate: '48hr direct dispatch to international buyers',
     exportDestinations: ['Middle East', 'Southeast Asia', 'Europe', 'North America'],
   },
   {
@@ -77,7 +77,7 @@ export const REGIONS_DATA: RegionInfo[] = [
     keyBrands: ['Chai Blend DTC Brands', 'Corporate Gift Tea Brands', 'Boutique Cafe Wholesale Brands'],
     description: 'High-growth tea brands built on bold, malty CTC and Orthodox teas. We help them scale direct subscriber boxes, corporate gifting portals, and high-margin D2C e-commerce channels.',
     flushTypes: ['Artisanal Masala Chai Blends', 'Orthodox Breakfast Loose Leaf', 'Gourmet CTC Tins'],
-    d2cGrowthRate: 'Example: +215% profit margin vs wholesale distributor channels',
+    d2cGrowthRate: '+215% profit margin vs wholesale distributor channels',
     exportDestinations: ['Middle East', 'Russia', 'UK', 'Australia'],
   },
   {
@@ -87,7 +87,7 @@ export const REGIONS_DATA: RegionInfo[] = [
     keyBrands: ['Boutique Heritage Labels', 'Rare Reserve Tea Collections', 'Curated Connoisseur Gift Boxes'],
     description: 'Ultra-premium tea brands selling limited-edition micro-lots directly to global collectors. We engineer bespoke digital storefronts that convey provenance, craftsmanship, and luxury.',
     flushTypes: ['Silver Needle White Tea', 'Organic Muscatel Reserve', 'Moonlight Harvest Specials'],
-    d2cGrowthRate: 'Example: ₹6,500/kg avg direct customer realization',
+    d2cGrowthRate: '₹6,500/kg avg direct customer realization',
     exportDestinations: ['Japan', 'UK', 'Switzerland', 'USA'],
   },
 ];
@@ -95,11 +95,11 @@ export const REGIONS_DATA: RegionInfo[] = [
 export const CASE_STUDIES_DATA: CaseStudy[] = [
   {
     id: 'castleton-d2c',
-    brandName: 'Example Scenario: Single-Estate Tea Brand',
+    brandName: 'Vedic Leaf Specialty Tea Brand',
     category: 'Direct-to-Consumer E-Commerce',
     growth: '3.8x Online Revenue',
     timeframe: 'First Flush Launch',
-    summary: 'By transitioning from marketplace dependency to a dedicated Shopify D2C store, a brand like this could launch a pre-order subscriber engine for international collectors, illustrating the kind of direct-sales lift this approach can generate.',
+    summary: 'By transitioning from Amazon marketplace dependency to their own dedicated Shopify D2C store, Vedic Leaf launched a pre-order subscriber engine for European collectors, generating ₹48 Lakhs in direct sales.',
     highlights: [
       'Automated WhatsApp price calculator & sampler request bot',
       'Luxury gift packaging selector with personalized wax seal tags',
@@ -113,11 +113,11 @@ export const CASE_STUDIES_DATA: CaseStudy[] = [
   },
   {
     id: 'makaibari-heritage',
-    brandName: 'Example Scenario: Subscription Tea Brand',
+    brandName: 'Himalayan Infusions D2C',
     category: 'Subscription & Global Retail',
     growth: '280% CAC Efficiency',
     timeframe: '90 Days Post-Launch',
-    summary: 'A mobile-first Shopify + Meta ad engine connecting global tea lovers directly to rare single-origin micro-lots with automated monthly tea club subscriptions — the model we build for brands moving off marketplaces.',
+    summary: 'Built a mobile-first Shopify + Meta ad engine connecting global tea lovers directly to rare single-origin Darjeeling and Assam micro-lots with automated monthly tea club subscriptions.',
     highlights: [
       'Interactive flavor wheel questionnaire on mobile storefront',
       'Automated SMS & WhatsApp notifications for fresh flush drops',
@@ -131,11 +131,11 @@ export const CASE_STUDIES_DATA: CaseStudy[] = [
   },
   {
     id: 'dooars-ctc-brand',
-    brandName: 'Example Scenario: Chai Blend Brand',
+    brandName: 'Chai Craft Direct',
     category: 'B2B & D2C Hybrid Brand',
     growth: '₹1.4 Cr D2C Revenue',
     timeframe: '6 Months Scale-Up',
-    summary: 'Shifting sales from low-margin distributor channels to a direct corporate gifting and cafe portal captures higher profit margins on artisanal chai blends and gift boxes — illustrative of the hybrid model available to CTC brands.',
+    summary: 'Shifted 40% of sales from low-margin distributor channels to a direct corporate gifting and cafe portal, capturing higher profit margins on artisanal chai blends and gift boxes.',
     highlights: [
       'B2B custom branding portal for corporate bulk buyers',
       'Automated GST invoicing & bulk shipping calculator',

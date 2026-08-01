@@ -1,0 +1,17 @@
+.page {
+  font-family: 'Inter', sans-serif;
+}
+.page h1, .page h2, .page h3, .page h4 {
+  font-family: 'Inter', sans-serif;
+}
+
+/* src/index.css forces `font-family: Roboto !important` on body/button/input/select
+   inside Tailwind's @layer base. A differently-named layer (or unlayered rule) can
+   never beat that via !important, no matter the specificity — only a rule inside the
+   SAME layer can, via normal specificity resolution. Re-opening the layer here is the
+   only reliable fix (same technique used on the hotels-business page). */
+@layer base {
+  .page button, .page input, .page select {
+    font-family: 'Inter', sans-serif !important;
+  }
+}
