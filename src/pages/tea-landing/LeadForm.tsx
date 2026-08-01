@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Phone, MapPin, Send, CheckCircle2, Sparkles, Clock, Copy, Check } from 'lucide-react';
+import type { TurnstileInstance } from '@marsidev/react-turnstile';
 import { StrategyLead } from './data';
+import { CaptchaWidget } from '../../components/CaptchaWidget';
 
 export const LeadForm: React.FC = () => {
   const [formData, setFormData] = useState<StrategyLead>({
@@ -14,12 +16,15 @@ export const LeadForm: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'error'>('idle');
   const [copiedPhone, setCopiedPhone] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState('');
+  const captchaRef = useRef<TurnstileInstance>(null);
 
   const validate = () => {
     const errs: Record<string, string> = {};
     if (!formData.name.trim()) errs.name = 'Full name is required';
     if (!formData.brandName.trim()) errs.brandName = 'Tea brand name is required';
     if (!formData.phone.trim() || formData.phone.length < 8) errs.phone = 'Valid phone/WhatsApp number required';
+    if (!captchaToken) errs.captcha = 'Please complete the verification check';
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -39,6 +44,7 @@ export const LeadForm: React.FC = () => {
           businessName: formData.brandName,
           phone: formData.phone,
           detail: formData.monthlyRevenue,
+          captchaToken,
         }),
       });
       if (!res.ok) throw new Error('Request failed');
@@ -46,6 +52,9 @@ export const LeadForm: React.FC = () => {
       setSubmitted(true);
     } catch {
       setStatus('error');
+    } finally {
+      captchaRef.current?.reset();
+      setCaptchaToken('');
     }
   };
 
@@ -201,6 +210,11 @@ export const LeadForm: React.FC = () => {
                     <option value="₹25L - ₹1 Crore / month">₹25L - ₹1 Crore / month</option>
                     <option value="₹1 Crore+ / month">₹1 Crore+ / month</option>
                   </select>
+                </div>
+
+                <div className="space-y-1">
+                  <CaptchaWidget ref={captchaRef} onToken={setCaptchaToken} />
+                  {errors.captcha && <p className="text-xs text-red-500">{errors.captcha}</p>}
                 </div>
 
                 <button

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import type { TurnstileInstance } from '@marsidev/react-turnstile';
 import { getLeadSource } from '../lib/leadSource';
+import { CaptchaWidget } from './CaptchaWidget';
 
 interface QuoteRequestModalProps {
   isOpen: boolean;
@@ -19,18 +21,24 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [captchaToken, setCaptchaToken] = useState('');
+  const captchaRef = useRef<TurnstileInstance>(null);
 
   if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!captchaToken) {
+      setError('Please complete the verification check.');
+      return;
+    }
     setIsSubmitting(true);
     setError(null);
     try {
       const res = await fetch('/api/quote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, service, notes, ...getLeadSource() }),
+        body: JSON.stringify({ name, email, service, notes, ...getLeadSource(), captchaToken }),
       });
       if (!res.ok) throw new Error('Request failed');
       setIsSubmitted(true);
@@ -38,6 +46,8 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
       setError('Something went wrong sending your request. Please try again or email us directly.');
     } finally {
       setIsSubmitting(false);
+      captchaRef.current?.reset();
+      setCaptchaToken('');
     }
   };
 
@@ -135,6 +145,8 @@ export const QuoteRequestModal: React.FC<QuoteRequestModalProps> = ({
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-slate-900 focus:border-blue-600 outline-none"
               />
             </div>
+
+            <CaptchaWidget ref={captchaRef} onToken={setCaptchaToken} />
 
             <div className="pt-2 flex justify-end gap-3">
               <button

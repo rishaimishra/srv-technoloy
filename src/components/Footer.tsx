@@ -1,25 +1,33 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone } from 'lucide-react';
+import type { TurnstileInstance } from '@marsidev/react-turnstile';
 import logoSrc from '../assets/images/srv-tech-board-footer.png';
 import { getLeadSource } from '../lib/leadSource';
+import { CaptchaWidget } from './CaptchaWidget';
 
 export const Footer: React.FC = () => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
   const [newsletterSubmitting, setNewsletterSubmitting] = useState(false);
   const [newsletterError, setNewsletterError] = useState<string | null>(null);
+  const [newsletterCaptchaToken, setNewsletterCaptchaToken] = useState('');
+  const newsletterCaptchaRef = useRef<TurnstileInstance>(null);
 
   const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail) return;
+    if (!newsletterCaptchaToken) {
+      setNewsletterError('Please complete the verification check.');
+      return;
+    }
     setNewsletterSubmitting(true);
     setNewsletterError(null);
     try {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: newsletterEmail, ...getLeadSource() }),
+        body: JSON.stringify({ email: newsletterEmail, ...getLeadSource(), captchaToken: newsletterCaptchaToken }),
       });
       if (!res.ok) throw new Error('Request failed');
       setNewsletterSubscribed(true);
@@ -27,6 +35,8 @@ export const Footer: React.FC = () => {
       setNewsletterError('Something went wrong. Please try again.');
     } finally {
       setNewsletterSubmitting(false);
+      newsletterCaptchaRef.current?.reset();
+      setNewsletterCaptchaToken('');
     }
   };
 
@@ -140,6 +150,7 @@ export const Footer: React.FC = () => {
                   placeholder="Enter work email..."
                   className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:border-blue-500 outline-none"
                 />
+                <CaptchaWidget ref={newsletterCaptchaRef} onToken={setNewsletterCaptchaToken} size="compact" />
                 <button
                   type="submit"
                   disabled={newsletterSubmitting}

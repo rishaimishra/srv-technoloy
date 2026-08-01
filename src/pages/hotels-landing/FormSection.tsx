@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
+import type { TurnstileInstance } from '@marsidev/react-turnstile';
 import { ReviewFormData } from './data';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { WHATSAPP_URL } from './constants';
+import { CaptchaWidget } from '../../components/CaptchaWidget';
 
 interface FormSectionProps {
   onFormSubmit: (data: ReviewFormData) => void;
@@ -20,6 +22,8 @@ export const FormSection: React.FC<FormSectionProps> = ({ onFormSubmit, initialR
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'error'>('idle');
+  const [captchaToken, setCaptchaToken] = useState('');
+  const captchaRef = useRef<TurnstileInstance>(null);
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -27,6 +31,7 @@ export const FormSection: React.FC<FormSectionProps> = ({ onFormSubmit, initialR
     if (!formData.propertyName.trim()) errs.propertyName = 'Property name is required';
     if (!formData.phone.trim() || formData.phone.length < 8) errs.phone = 'Valid phone/WhatsApp number required';
     if (!formData.location.trim()) errs.location = 'Location is required';
+    if (!captchaToken) errs.captcha = 'Please complete the verification check';
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -47,6 +52,7 @@ export const FormSection: React.FC<FormSectionProps> = ({ onFormSubmit, initialR
           phone: formData.phone,
           city: formData.location,
           detail: formData.propertySize,
+          captchaToken,
         }),
       });
       if (!res.ok) throw new Error('Request failed');
@@ -54,6 +60,9 @@ export const FormSection: React.FC<FormSectionProps> = ({ onFormSubmit, initialR
       onFormSubmit(formData);
     } catch {
       setStatus('error');
+    } finally {
+      captchaRef.current?.reset();
+      setCaptchaToken('');
     }
   };
 
@@ -174,6 +183,11 @@ export const FormSection: React.FC<FormSectionProps> = ({ onFormSubmit, initialR
                     <option value="16–30 rooms">16–30 rooms (Mid-size Hotel)</option>
                     <option value="30+ rooms">30+ rooms (Large Hotel / Heritage Stay)</option>
                   </select>
+                </div>
+
+                <div className="space-y-1">
+                  <CaptchaWidget ref={captchaRef} onToken={setCaptchaToken} />
+                  {errors.captcha && <p className="text-xs text-red-500">{errors.captcha}</p>}
                 </div>
 
                 <button

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import type { TurnstileInstance } from '@marsidev/react-turnstile';
 import { getLeadSource } from '../lib/leadSource';
+import { CaptchaWidget } from './CaptchaWidget';
 
 interface ContactSectionProps {
   prefilledSubject?: string;
@@ -19,16 +21,22 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledSubject
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [captchaToken, setCaptchaToken] = useState('');
+  const captchaRef = useRef<TurnstileInstance>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!captchaToken) {
+      setError('Please complete the verification check.');
+      return;
+    }
     setIsSubmitting(true);
     setError(null);
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, ...getLeadSource() }),
+        body: JSON.stringify({ ...formData, ...getLeadSource(), captchaToken }),
       });
       if (!res.ok) throw new Error('Request failed');
       setIsSubmitted(true);
@@ -36,6 +44,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledSubject
       setError('Something went wrong sending your message. Please try again or email us directly.');
     } finally {
       setIsSubmitting(false);
+      captchaRef.current?.reset();
+      setCaptchaToken('');
     }
   };
 
@@ -241,6 +251,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledSubject
                     id="contact-message"
                   />
                 </div>
+
+                <CaptchaWidget ref={captchaRef} onToken={setCaptchaToken} />
 
                 <button
                   type="submit"

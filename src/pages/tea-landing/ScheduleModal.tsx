@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Calendar, Clock, X, CheckCircle2 } from 'lucide-react';
+import type { TurnstileInstance } from '@marsidev/react-turnstile';
+import { CaptchaWidget } from '../../components/CaptchaWidget';
 
 interface ScheduleModalProps {
   isOpen: boolean;
@@ -14,6 +16,8 @@ export const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose })
   const [brand, setBrand] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'booked' | 'error'>('idle');
+  const [captchaToken, setCaptchaToken] = useState('');
+  const captchaRef = useRef<TurnstileInstance>(null);
 
   if (!isOpen) return null;
 
@@ -22,6 +26,7 @@ export const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose })
     if (!name.trim()) errs.name = 'Name is required';
     if (!brand.trim()) errs.brand = 'Tea brand name is required';
     if (!phone.trim() || phone.length < 8) errs.phone = 'Valid phone/WhatsApp number required';
+    if (!captchaToken) errs.captcha = 'Please complete the verification check';
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -42,12 +47,16 @@ export const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose })
           phone,
           detail: 'Consultation call request',
           note: `Requested slot: ${selectedDate} at ${selectedTime}`,
+          captchaToken,
         }),
       });
       if (!res.ok) throw new Error('Request failed');
       setStatus('booked');
     } catch {
       setStatus('error');
+    } finally {
+      captchaRef.current?.reset();
+      setCaptchaToken('');
     }
   };
 
@@ -153,6 +162,11 @@ export const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose })
                 />
                 {errors.phone && <p className="text-[11px] text-red-500 mt-1">{errors.phone}</p>}
               </div>
+            </div>
+
+            <div className="space-y-1">
+              <CaptchaWidget ref={captchaRef} onToken={setCaptchaToken} />
+              {errors.captcha && <p className="text-[11px] text-red-500">{errors.captcha}</p>}
             </div>
 
             <button

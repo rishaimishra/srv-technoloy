@@ -323,7 +323,32 @@ async function sendAutoReply({ to, name }) {
   });
 }
 
-app.post('/api/contact', async (req, res) => {
+const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY;
+
+async function verifyTurnstile(token, remoteip) {
+  if (!token || !TURNSTILE_SECRET_KEY) return false;
+  const params = new URLSearchParams({ secret: TURNSTILE_SECRET_KEY, response: token });
+  if (remoteip) params.append('remoteip', remoteip);
+  try {
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: params,
+    });
+    const data = await res.json();
+    return data.success === true;
+  } catch (err) {
+    console.error('Turnstile verification request failed:', err);
+    return false;
+  }
+}
+
+async function requireCaptcha(req, res, next) {
+  const ok = await verifyTurnstile(req.body?.captchaToken, req.ip);
+  if (!ok) return res.status(403).json({ error: 'Verification failed. Please try again.' });
+  next();
+}
+
+app.post('/api/contact', requireCaptcha, async (req, res) => {
   const { firstName, lastName, email, phone, projectType, budget, message } = req.body || {};
   if (!firstName || !lastName || !email || !message) {
     return res.status(400).json({ error: 'Missing required fields.' });
@@ -375,7 +400,7 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-app.post('/api/landing-lead', async (req, res) => {
+app.post('/api/landing-lead', requireCaptcha, async (req, res) => {
   const { formType, name, businessName, phone, city, detail, note } = req.body || {};
   if (!formType || !name || !phone) {
     return res.status(400).json({ error: 'Missing required fields.' });
@@ -423,7 +448,7 @@ app.post('/api/landing-lead', async (req, res) => {
   }
 });
 
-app.post('/api/quote', async (req, res) => {
+app.post('/api/quote', requireCaptcha, async (req, res) => {
   const { name, email, service, notes } = req.body || {};
   if (!name || !email || !service) {
     return res.status(400).json({ error: 'Missing required fields.' });
@@ -467,7 +492,7 @@ app.post('/api/quote', async (req, res) => {
   }
 });
 
-app.post('/api/subscribe', async (req, res) => {
+app.post('/api/subscribe', requireCaptcha, async (req, res) => {
   const { email } = req.body || {};
   if (!email) {
     return res.status(400).json({ error: 'Missing required fields.' });
