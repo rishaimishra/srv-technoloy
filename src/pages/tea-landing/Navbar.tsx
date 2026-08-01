@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import logoSrc from '../../assets/images/srv-tech-board.png';
 
 interface NavbarProps {
   onOpenAuditModal: () => void;
@@ -30,8 +31,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAuditModal, onOpenCaseStud
       id="nav"
     >
       <div className="flex justify-between items-center px-4 md:px-10 max-w-[1280px] mx-auto w-full">
-        <a href="#" className="font-bold text-2xl text-[#01261f] tracking-tight hover:opacity-90 transition-opacity flex items-center gap-2">
-          <span>SRV Technology</span>
+        <a href="#" className="hover:opacity-90 transition-opacity flex items-center gap-2">
+          <img src={logoSrc} alt="SRV Technology" className="h-10 w-auto" />
         </a>
 
         <div className="hidden md:flex gap-8 items-center text-sm font-medium">
