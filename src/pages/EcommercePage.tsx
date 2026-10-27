@@ -14,7 +14,7 @@ export const EcommercePage: React.FC<EcommercePageProps> = ({
       <SEO
         title="E-Commerce Development in Siliguri | SRV Technology"
         description="Scalable e-commerce stores on Shopify, WooCommerce & Magento in Siliguri & West Bengal. Custom plugins, payment gateways, and ERP inventory sync. E-commerce agency serving Darjeeling."
-        canonical="https://srvtechnology.com/services/ecommerce"
+        canonical="https://srvtechnology.com/services/ecommerce/"
         keywords={['e-commerce development Siliguri', 'Shopify developer West Bengal', 'Magento agency Darjeeling', 'WooCommerce North Bengal']}
       />
       <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">

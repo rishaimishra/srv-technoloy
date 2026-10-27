@@ -72,7 +72,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       <SEO
         title="Web Development & IT Services in Siliguri | SRV Technology"
         description="Full-stack web development services in Siliguri and West Bengal. SRV Technology offers custom software, Syspro ERP, Salesforce, mobile apps, e-commerce, and AI/ML. Leading web development agency in Darjeeling & North Bengal."
-        canonical="https://srvtechnology.com/services"
+        canonical="https://srvtechnology.com/services/"
         keywords={['web development services Siliguri', 'IT company West Bengal', 'software agency Darjeeling', 'ERP services North Bengal', 'website development company Siliguri']}
       />
       <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">

@@ -28,7 +28,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
       <SEO
         title="Portfolio & Case Studies | Web Development Agency Siliguri"
         description="Explore real-world enterprise projects by SRV Technology, the best web development company in Siliguri & West Bengal. Syspro ERP, Salesforce, AI/ML, mobile & e-commerce case studies."
-        canonical="https://srvtechnology.com/portfolio"
+        canonical="https://srvtechnology.com/portfolio/"
         keywords={['web development portfolio Siliguri', 'software case studies West Bengal', 'ERP projects Darjeeling', 'IT portfolio North Bengal']}
       />
       <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">

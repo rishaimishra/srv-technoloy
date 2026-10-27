@@ -12,7 +12,7 @@ export const BlogListPage: React.FC = () => {
       <SEO
         title="Blog | Web Development Company in Siliguri & West Bengal"
         description="Technical articles from SRV Technology, the best website development company in West Bengal & Siliguri. Learn about Syspro ERP, Salesforce, React Native & AI from our engineering team."
-        canonical="https://srvtechnology.com/blog"
+        canonical="https://srvtechnology.com/blog/"
         keywords={['web development blog Siliguri', 'software company West Bengal blog', 'tech insights Darjeeling']}
       />
 

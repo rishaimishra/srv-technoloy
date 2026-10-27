@@ -19,7 +19,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({
       <SEO
         title="Tech Blog & Insights | Web Development Company in West Bengal"
         description="Technical guides from SRV Technology, the best web development company in West Bengal & Siliguri. Syspro ERP, Salesforce Apex, React Native & AI articles by our engineering team."
-        canonical="https://srvtechnology.com/insights"
+        canonical="https://srvtechnology.com/insights/"
         keywords={['web development blog Siliguri', 'software engineering insights West Bengal', 'tech articles Darjeeling']}
       />
       <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">

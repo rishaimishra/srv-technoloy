@@ -14,7 +14,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       <SEO
         title="About SRV Technology | Web Development Agency in Siliguri"
         description="SRV Technology is a trusted web development agency in Siliguri & West Bengal, founded in 2018. We deliver Syspro ERP, Salesforce CRM, custom software, mobile apps & AI/ML solutions from our North Bengal office."
-        canonical="https://srvtechnology.com/about"
+        canonical="https://srvtechnology.com/about/"
         keywords={['web development agency Siliguri', 'software company West Bengal', 'IT company Darjeeling', 'web developers North Bengal']}
       />
       <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">

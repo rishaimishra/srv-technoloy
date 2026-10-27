@@ -9,7 +9,7 @@ export const ContactPage: React.FC = () => {
       <SEO
         title="Contact Web Development Agency in Siliguri | SRV Technology"
         description="Contact SRV Technology, the leading web development agency in Siliguri & West Bengal. Get a free consultation for Syspro ERP, Salesforce, mobile apps, e-commerce & AI/ML. Serving Darjeeling & North Bengal."
-        canonical="https://srvtechnology.com/contact"
+        canonical="https://srvtechnology.com/contact/"
         keywords={['contact web developer Siliguri', 'website development company West Bengal', 'IT agency Darjeeling', 'get quote North Bengal']}
       />
       <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">

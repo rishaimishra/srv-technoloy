@@ -14,7 +14,7 @@ export const AiMlPage: React.FC<AiMlPageProps> = ({
       <SEO
         title="AI & ML Development in Siliguri | SRV Technology"
         description="Production-grade AI, LLM & ML development in Siliguri, West Bengal. Gemini API integration, RAG vector search, predictive models & autonomous agents. AI agency serving Darjeeling & North Bengal."
-        canonical="https://srvtechnology.com/services/ai-ml"
+        canonical="https://srvtechnology.com/services/ai-ml/"
         keywords={['AI development Siliguri', 'machine learning company West Bengal', 'LLM integration Darjeeling', 'AI agency North Bengal']}
       />
       <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">

@@ -56,7 +56,7 @@ export const TeaBrandsPage: React.FC = () => {
       <SEO
         title="Stop Losing Tea Brand Margin to Marketplace Fees"
         description="D2C Shopify storefronts, Meta & Google ad campaigns, and WhatsApp replenishment automation for specialty tea brands in West Bengal moving off Amazon & Flipkart."
-        canonical="https://srvtechnology.com/tea-brands"
+        canonical="https://srvtechnology.com/tea-brands/"
         keywords={['D2C tea brand website', 'Shopify store for tea brand', 'reduce Amazon Flipkart commission tea brand', 'tea brand digital marketing West Bengal', 'D2C e-commerce agency Siliguri', 'tea brand Meta ads']}
       />
       <LocalBusinessSchema />

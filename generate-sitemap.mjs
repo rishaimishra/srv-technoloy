@@ -7,21 +7,27 @@ const SITE_URL = 'https://srvtechnology.com';
 const OUT_FILE = join(__dirname, 'public', 'sitemap.xml');
 const BLOG_FILE = join(__dirname, 'data', 'blog.json');
 
+// Trailing slashes match how Apache actually serves these pages (dist/<path>/
+// is a directory containing index.html; Apache 301-redirects a request for
+// the no-slash form to the slash form before serving it) and how each page's
+// own <link rel="canonical"> is set. Listing the no-slash form here would
+// mean the sitemap points at a URL that immediately redirects elsewhere,
+// which Search Console flags as an error.
 const STATIC_PAGES = [
   { path: '/', priority: '1.0' },
-  { path: '/services', priority: '0.9' },
-  { path: '/services/custom-software', priority: '0.8' },
-  { path: '/services/mobile-apps', priority: '0.8' },
-  { path: '/services/erp-salesforce', priority: '0.8' },
-  { path: '/services/ecommerce', priority: '0.8' },
-  { path: '/services/ai-ml', priority: '0.8' },
-  { path: '/portfolio', priority: '0.8' },
-  { path: '/about', priority: '0.7' },
-  { path: '/insights', priority: '0.7' },
-  { path: '/contact', priority: '0.7' },
-  { path: '/blog', priority: '0.9' },
-  { path: '/hotels-business', priority: '0.6' },
-  { path: '/tea-brands', priority: '0.6' },
+  { path: '/services/', priority: '0.9' },
+  { path: '/services/custom-software/', priority: '0.8' },
+  { path: '/services/mobile-apps/', priority: '0.8' },
+  { path: '/services/erp-salesforce/', priority: '0.8' },
+  { path: '/services/ecommerce/', priority: '0.8' },
+  { path: '/services/ai-ml/', priority: '0.8' },
+  { path: '/portfolio/', priority: '0.8' },
+  { path: '/about/', priority: '0.7' },
+  { path: '/insights/', priority: '0.7' },
+  { path: '/contact/', priority: '0.7' },
+  { path: '/blog/', priority: '0.9' },
+  { path: '/hotels-business/', priority: '0.6' },
+  { path: '/tea-brands/', priority: '0.6' },
 ];
 
 function loadArticles() {
@@ -40,7 +46,7 @@ function urlEntry({ path, priority, lastmod }) {
 
 function generateSitemap() {
   const blogEntries = loadArticles().map((article) => ({
-    path: `/blog/${article.id}`,
+    path: `/blog/${article.id}/`,
     priority: '0.6',
     lastmod: article.updatedAt,
   }));

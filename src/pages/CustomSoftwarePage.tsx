@@ -14,7 +14,7 @@ export const CustomSoftwarePage: React.FC<CustomSoftwarePageProps> = ({
       <SEO
         title="Custom Software Development in Siliguri | SRV Technology"
         description="SRV Technology builds bespoke enterprise software & web applications in Siliguri and West Bengal. React, Node.js, Python microservices & cloud-native platforms. Top software development company in North Bengal."
-        canonical="https://srvtechnology.com/services/custom-software"
+        canonical="https://srvtechnology.com/services/custom-software/"
         keywords={['custom software development Siliguri', 'software development company West Bengal', 'web application development Darjeeling']}
       />
       <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">

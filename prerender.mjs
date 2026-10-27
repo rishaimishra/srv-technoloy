@@ -1,5 +1,5 @@
 import { chromium } from '@playwright/test';
-import { writeFileSync, mkdirSync } from 'fs';
+import { writeFileSync, mkdirSync, renameSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { spawn } from 'child_process';
@@ -75,6 +75,31 @@ async function prerender() {
     const browser = await chromium.launch();
     const page = await browser.newPage();
 
+    // Block Cloudflare Turnstile: it keeps long-lived connections open to
+    // challenges.cloudflare.com, so `networkidle` never fires. The widget
+    // renders inside a cross-origin iframe anyway and contributes nothing
+    // to the prerendered HTML/SEO, so it's safe to skip during prerender.
+    await page.route('**/*', (route) => {
+      if (route.request().url().includes('challenges.cloudflare.com')) {
+        return route.abort();
+      }
+      return route.continue();
+    });
+
+    // Every route below is written to a `.staging` file first and only
+    // moved into its final dist/ path after the whole crawl finishes. The
+    // live server's catch-all route serves dist/index.html as the SPA shell
+    // for any path it doesn't have a prerendered file for yet. If we wrote
+    // straight to the final path, the homepage (first in STATIC_ROUTES)
+    // would overwrite dist/index.html with its own fully Helmet-rendered
+    // HTML after its own iteration — and every later route would then load
+    // THAT as its starting document instead of the pristine `vite build`
+    // shell. React Helmet only owns/replaces tags it itself rendered, so it
+    // would add that route's tags on top of the homepage's instead of
+    // replacing them, leaving two conflicting <title>/canonical/meta sets
+    // in the final HTML. Keeping dist/index.html untouched until the end
+    // keeps the fallback shell clean for every route in the loop.
+    const staged = [];
     try {
       for (const route of routes) {
         const url = `${BASE_URL}${route.path}`;
@@ -82,10 +107,16 @@ async function prerender() {
 
         const html = await page.content();
         const filePath = join(dist, route.file);
+        const stagingPath = `${filePath}.staging`;
         mkdirSync(dirname(filePath), { recursive: true });
 
-        writeFileSync(filePath, '<!doctype html>\n' + html);
+        writeFileSync(stagingPath, '<!doctype html>\n' + html);
+        staged.push({ stagingPath, filePath });
         console.log(`Prerendered: ${route.path} -> ${route.file}`);
+      }
+
+      for (const { stagingPath, filePath } of staged) {
+        renameSync(stagingPath, filePath);
       }
     } finally {
       await browser.close();

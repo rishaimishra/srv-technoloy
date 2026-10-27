@@ -14,7 +14,7 @@ export const ErpSalesforcePage: React.FC<ErpSalesforcePageProps> = ({
       <SEO
         title="ERP & Salesforce Services in Siliguri | SRV Technology"
         description="End-to-end Syspro ERP implementation and Salesforce CRM development in Siliguri & West Bengal. Lightning Web Components, Apex, and enterprise integrations. ERP consultants serving Darjeeling & North Bengal."
-        canonical="https://srvtechnology.com/services/erp-salesforce"
+        canonical="https://srvtechnology.com/services/erp-salesforce/"
         keywords={['ERP implementation Siliguri', 'Salesforce development West Bengal', 'Syspro ERP consultant Darjeeling', 'CRM services North Bengal']}
       />
       <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">

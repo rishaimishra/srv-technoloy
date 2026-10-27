@@ -14,7 +14,7 @@ export const MobileAppPage: React.FC<MobileAppPageProps> = ({
       <SEO
         title="Mobile App Development in Siliguri & West Bengal | SRV Technology"
         description="SRV Technology builds cross-platform and native iOS/Android mobile apps in Siliguri, West Bengal. React Native, Flutter, Swift & Kotlin development. Mobile app agency serving Darjeeling & North Bengal."
-        canonical="https://srvtechnology.com/services/mobile-apps"
+        canonical="https://srvtechnology.com/services/mobile-apps/"
         keywords={['mobile app development Siliguri', 'app development company West Bengal', 'React Native developer Darjeeling', 'Flutter app North Bengal']}
       />
       <div className="min-h-screen bg-white text-slate-900 pt-28 pb-24 font-sans">

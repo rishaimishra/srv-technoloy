@@ -34,7 +34,7 @@ export const BlogDetailPage: React.FC = () => {
     );
   }
 
-  const canonicalUrl = `https://srvtechnology.com/blog/${article.id}`;
+  const canonicalUrl = `https://srvtechnology.com/blog/${article.id}/`;
 
   return (
     <>

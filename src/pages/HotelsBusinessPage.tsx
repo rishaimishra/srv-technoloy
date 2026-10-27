@@ -40,7 +40,7 @@ export const HotelsBusinessPage: React.FC = () => {
       <SEO
         title="Direct Bookings, Not OTA Commissions"
         description="Direct-booking website & ad campaigns for independent hotels, resorts and homestays in West Bengal — reduce OTA commission and get guests booking straight with you."
-        canonical="https://srvtechnology.com/hotels-business"
+        canonical="https://srvtechnology.com/hotels-business/"
         keywords={['direct booking website for hotels', 'hotel website development West Bengal', 'reduce OTA commission', 'hotel digital marketing agency West Bengal', 'resort website development Siliguri', 'homestay booking website']}
       />
       <LocalBusinessSchema />
